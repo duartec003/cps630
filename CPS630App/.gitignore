@@ -1,5 +1,13 @@
-bin
-libs
-gen
+*.apk
+*.ap_
+*.dex
+*.class
+bin/
+gen/
+local.properties
+.settings
 .classpath
 .project
+proguard/
+project.properties
+proguard-project.txt
