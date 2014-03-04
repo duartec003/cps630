@@ -45,11 +45,13 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class layout {
         public static final int activity_dynamic_list=0x7f030000;
         public static final int activity_fullscreen=0x7f030001;
-        public static final int activity_static_list=0x7f030002;
+        public static final int activity_menu_display=0x7f030002;
+        public static final int activity_static_list=0x7f030003;
     }
     public static final class menu {
         public static final int dynamic_list=0x7f080000;
-        public static final int static_list=0x7f080001;
+        public static final int menu_display=0x7f080001;
+        public static final int static_list=0x7f080002;
     }
     public static final class string {
         public static final int action_settings=0x7f060006;
@@ -60,6 +62,7 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int dummy_content=0x7f060002;
         public static final int hello_world=0x7f060007;
         public static final int title_activity_dynamic_list=0x7f060008;
+        public static final int title_activity_menu_display=0x7f060009;
         public static final int title_activity_static_list=0x7f060005;
     }
     public static final class style {

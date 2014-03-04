@@ -32,6 +32,10 @@
             android:name="com.mod.cps630app.DynamicListActivity"
             android:label="@string/title_activity_dynamic_list" >
         </activity>
+        <activity
+            android:name="com.mod.cps630app.MenuDisplayActivity"
+            android:label="@string/title_activity_menu_display" >
+        </activity>
     </application>
 
 </manifest>

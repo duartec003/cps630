@@ -10,5 +10,6 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_dynamic_list">DynamicListActivity</string>
+    <string name="title_activity_menu_display">MenuDisplayActivity</string>
 
 </resources>
