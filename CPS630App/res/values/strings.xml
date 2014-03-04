@@ -4,5 +4,11 @@
     <string name="app_name">CPS630App</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="button_gps">Find Me</string>
+    <string name="button_other">Other Locations</string>
+    <string name="title_activity_static_list">StaticListActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_dynamic_list">DynamicListActivity</string>
 
 </resources>

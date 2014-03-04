@@ -57,13 +57,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="Button" />
+            android:text="@string/button_other" 
+            android:onClick="showStaticLocations"/>
 
         <Button
             android:id="@+id/button1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Button" />
+            android:text="@string/button_gps" 
+            android:onClick="showDynamicLocations"/>
 
     </FrameLayout>
 
