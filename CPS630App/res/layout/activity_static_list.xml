@@ -9,9 +9,15 @@
     android:parentActivityName="com.mod.cps630app.MainActivity"
     tools:context=".StaticListActivity" >
 
-    <TextView
-        android:layout_width="wrap_content"
+    <ExpandableListView
+        android:id="@+id/allBuildingsList"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Static list" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true" >
+
+    </ExpandableListView>
 
 </RelativeLayout>
