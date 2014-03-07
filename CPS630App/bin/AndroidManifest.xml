@@ -36,6 +36,14 @@
             android:name="com.mod.cps630app.MenuDisplayActivity"
             android:label="@string/title_activity_menu_display" >
         </activity>
+        <activity
+            android:name="com.mod.cps630app.PaymentActivity"
+            android:label="@string/title_activity_payment" >
+        </activity>
+        <activity
+            android:name="com.mod.cps630app.ConfirmationActivity"
+            android:label="@string/title_activity_confirmation" >
+        </activity>
     </application>
 
 </manifest>

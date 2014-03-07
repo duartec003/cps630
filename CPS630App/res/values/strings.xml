@@ -11,5 +11,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_dynamic_list">DynamicListActivity</string>
     <string name="title_activity_menu_display">MenuDisplayActivity</string>
+    <string name="title_activity_payment">PaymentActivity</string>
+    <string name="title_activity_confirmation">ConfirmationActivity</string>
 
 </resources>

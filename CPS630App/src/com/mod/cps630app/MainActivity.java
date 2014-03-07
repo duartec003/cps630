@@ -13,7 +13,6 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_fullscreen);
-	//test
 	
 	}
 
@@ -28,7 +27,7 @@ public class MainActivity extends Activity {
 		getMenuInflater().inflate(R.menu.menu_display, menu);
 		return true;
 	}
-
+	
 	public void showStaticLocations(View view) {
 		Intent intent = new Intent(this, StaticListActivity.class);
 		startActivity(intent);
