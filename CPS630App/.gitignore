@@ -3,7 +3,6 @@
 *.dex
 *.class
 bin/
-gen/
 local.properties
 .settings
 .classpath
