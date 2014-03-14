@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="RyersonBuildingsArray">
+        <item>Buildings In Ryerson</item>
+        <item>Library Building/Jorgenson Hall</item>
+        <item>Rogers Communication Center</item>
+        <item>Kerr Hall</item>
+        <item>Engineering Building</item>
+        <item>Ted Rogers School Of Management</item>
+        <item>Library Bridge</item>
+        <item>Pitman Hall</item>   
+    </string-array>
+</resources>
