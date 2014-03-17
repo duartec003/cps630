@@ -2,7 +2,6 @@
 *.ap_
 *.dex
 *.class
-bin/
 local.properties
 .settings
 .classpath
