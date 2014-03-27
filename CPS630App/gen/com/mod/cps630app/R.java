@@ -38,15 +38,17 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
         public static final int ic_launcher=0x7f020000;
     }
     public static final class id {
-        public static final int LinearLayout1=0x7f0a0005;
-        public static final int action_settings=0x7f0a0008;
-        public static final int button1=0x7f0a0004;
-        public static final int button2=0x7f0a0003;
-        public static final int dummy_button=0x7f0a0002;
+        public static final int Credit=0x7f0a0007;
+        public static final int Debit=0x7f0a0006;
+        public static final int LinearLayout1=0x7f0a0004;
+        public static final int OneCard=0x7f0a0008;
+        public static final int action_settings=0x7f0a000a;
+        public static final int button1=0x7f0a0003;
+        public static final int button2=0x7f0a0002;
         public static final int fullscreen_content=0x7f0a0000;
         public static final int fullscreen_content_controls=0x7f0a0001;
-        public static final int listView=0x7f0a0006;
-        public static final int textView1=0x7f0a0007;
+        public static final int listView=0x7f0a0005;
+        public static final int textView1=0x7f0a0009;
     }
     public static final class layout {
         public static final int activity_confirmation=0x7f030000;
@@ -71,10 +73,10 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
     public static final class string {
         public static final int action_settings=0x7f070006;
         public static final int app_name=0x7f070000;
+        public static final int app_title=0x7f070002;
         public static final int button_gps=0x7f070003;
         public static final int button_other=0x7f070004;
         public static final int dummy_button=0x7f070001;
-        public static final int dummy_content=0x7f070002;
         public static final int hello_world=0x7f070007;
         public static final int title_activity_confirmation=0x7f07000b;
         public static final int title_activity_dynamic_list=0x7f070008;

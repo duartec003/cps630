@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0099cc"
+    android:background="#598e96"
     tools:context=".MainActivity" >
 
     <!--
@@ -15,10 +15,11 @@
         android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="60dp"
         android:keepScreenOn="true"
-        android:text="@string/dummy_content"
-        android:textColor="#33b5e5"
+        android:text="@string/app_title"
+        android:textColor="#ffffff"
         android:textSize="50sp"
         android:textStyle="bold" />
 
@@ -42,30 +43,34 @@
             android:orientation="horizontal"
             tools:ignore="UselessParent" >
 
-            <Button
+            <!-- <Button
                 android:id="@+id/dummy_button"
                 style="?buttonBarButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/dummy_button" />
+                android:text="@string/dummy_button" /> -->
             
         </LinearLayout>
-
+ 
         <Button
             android:id="@+id/button2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="60dp"
             android:layout_gravity="center_vertical"
             android:text="@string/button_other" 
             android:onClick="showStaticLocations"/>
 
         <Button
             android:id="@+id/button1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_gps" 
-            android:onClick="showDynamicLocations"/>
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="80dp"
+            android:onClick="showDynamicLocations"
+            android:text="@string/button_gps" />
 
     </FrameLayout>
 
