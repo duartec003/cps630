@@ -138,6 +138,7 @@ public class DynamicListActivity extends Activity implements
 		currentLocation = locationClient.getLastLocation();
 		((TextView) findViewById(R.id.dynamic_list_text_view))
 				.append(currentLocation.toString());
+		
 	}
 
 	@Override

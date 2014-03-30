@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <Buildings>
+        <Name>Ted Rogers</Name>
+        <location>
+            <latitude>43.655402</latitude>
+            <longitude>-79.382850</longitude>
+        </location>
+        <Store>
+            <location>7th Floor</location>
+            <name>Tim Hortons</name>
+            <hours>Monday to Thursday  7:30 a.m. – 8 p.m. Friday  7:30 a.m. – 2:30 p.m.</hours>
+        </Store>
+        <Store>
+            <location>9th Floor</location>
+            <name> Tim Hortons</name>
+            <hours>Monday to Thursday   7:30 a.m. – 3 p.m. Friday 7:30 a.m. - 1 p.m.</hours>
+        </Store>
+    </Buildings>
+
+    <Buildings>
+        <Name>Kerr Hall</Name>
+        <location>
+            <latitude>43.658212</latitude>
+            <longitude>-79.379089</longitude>
+        </location>
+        <Store>
+            <location>2nd Floor (at the bridge to Roger's Centre)</location>
+            <name>Tim Hortons</name>
+            <hours>Monday to Thursday   7:30 a.m. – 8 p.m. Friday  7:30 a.m. – 2 p.m.</hours>
+        </Store>
+    </Buildings>
+
+    <Buildings>
+        <Name>Library</Name>
+        <location>
+            <latitude>43.658006</latitude>
+            <longitude>-79.380650</longitude>
+        </location>
+        <Store>
+            <location>1st Floor,Hub, Jorgenson Hall, 380 Victoria Street</location>
+            <name>Tim Hortons</name>
+            <hours>Monday to Thursday   7 a.m. – 8 p.m. Friday  7 a.m. – 3 p.m.</hours>
+        </Store>
+    </Buildings>
+
+    <Buildings>
+        <Name>Engineering Building</Name>
+        <location>
+            <latitude>43.657548</latitude>
+            <longitude>-79.377292</longitude>
+        </location>
+        <Store>
+            <location>Main Floor</location>
+            <name>Tim Hortons</name>
+            <hours>Monday to Thursday  7:30 a.m. – 4:30 p.m. Friday 7:30 a.m. – 2 p.m.</hours>
+        </Store>
+        <Store>
+            <location>Library Bridge</location>
+            <name>Tim Hortons</name>
+            <hours>Monday to Thursday   8 a.m. - 10 p.m.  Friday  8 a.m. - 3 p.m.</hours>
+        </Store>
+    </Buildings>
+
+    <Buildings>
+        <Name>Pittman Hall</Name>
+        <location>
+            <latitude>43.659294</latitude>
+            <longitude>-79.377083</longitude>
+        </location>
+        <Store>
+            <location>160 Mutual Street</location>
+            <name></name>
+            <hours></hours>
+        </Store>
+    </Buildings>
+
+    <Buildings>
+        <Name>Eric Palin Hall</Name>
+        <location>
+            <latitude>43.659711</latitude>
+            <longitude>-79.377322</longitude>
+        </location>
+        <Store>
+            <location>Main Floor</location>
+            <name>Expressos</name>
+            <hours>Monday to Thursday   9 a.m. – 1:30 p.m. Friday  Closed</hours>
+        </Store>
+    </Buildings>
+
+    <Buildings>
+        <Name>Image Arts Building</Name>
+        <location>
+            <latitude>43.657494</latitude>
+            <longitude>-79.379144</longitude>
+        </location>
+        <Store>
+            <location>Main Floor</location>
+            <name>Balzacs</name>
+            <hours>Monday to Friday 7 a.m. to 9 p.m. Saturday 10 a.m. to 5 p.m. Sunday 10 a.m. to 5 p.m.</hours>
+        </Store>
+    </Buildings>
+</root>
