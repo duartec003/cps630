@@ -64,19 +64,6 @@
     </Buildings>
 
     <Buildings>
-        <Name>Pittman Hall</Name>
-        <location>
-            <latitude>43.659294</latitude>
-            <longitude>-79.377083</longitude>
-        </location>
-        <Store>
-            <location>160 Mutual Street</location>
-            <name></name>
-            <hours></hours>
-        </Store>
-    </Buildings>
-
-    <Buildings>
         <Name>Eric Palin Hall</Name>
         <location>
             <latitude>43.659711</latitude>

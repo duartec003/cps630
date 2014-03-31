@@ -1,15 +1,38 @@
 package com.mod.cps630app;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.PriorityQueue;
+
+import org.w3c.dom.Document;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.Intent;
 import android.content.IntentSender;
+import android.content.res.XmlResourceParser;
 import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,17 +47,19 @@ public class DynamicListActivity extends Activity implements
 		GooglePlayServicesClient.ConnectionCallbacks,
 		GooglePlayServicesClient.OnConnectionFailedListener, LocationListener {
 
-	private static final int	CONNECTION_FAILURE_RESOLUTION_REQUEST	= 9000;
-	private static final int	MILLISECONDS_PER_SECOND					= 1000;
-	public static final int		UPDATE_INTERVAL_IN_SECONDS				= 5;
-	private static final long	UPDATE_INTERVAL							= MILLISECONDS_PER_SECOND
-																				* UPDATE_INTERVAL_IN_SECONDS;
-	private static final int	FASTEST_INTERVAL_IN_SECONDS				= 1;
-	private static final long	FASTEST_INTERVAL						= MILLISECONDS_PER_SECOND
-																				* FASTEST_INTERVAL_IN_SECONDS;
-	private LocationClient		locationClient;
-	private Location			currentLocation;
-	private LocationRequest		locationRequest;
+	private static final int			CONNECTION_FAILURE_RESOLUTION_REQUEST	= 9000;
+	private static final int			MILLISECONDS_PER_SECOND					= 1000;
+	public static final int				UPDATE_INTERVAL_IN_SECONDS				= 5;
+	private static final long			UPDATE_INTERVAL							= MILLISECONDS_PER_SECOND
+																						* UPDATE_INTERVAL_IN_SECONDS;
+	private static final int			FASTEST_INTERVAL_IN_SECONDS				= 1;
+	private static final long			FASTEST_INTERVAL						= MILLISECONDS_PER_SECOND
+																						* FASTEST_INTERVAL_IN_SECONDS;
+	private LocationClient				locationClient;
+	private Location					currentLocation;
+	private LocationRequest				locationRequest;
+
+	private HashMap<String, Location>	locationMap;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -136,9 +161,7 @@ public class DynamicListActivity extends Activity implements
 	public void onConnected(Bundle bundle) {
 		Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
 		currentLocation = locationClient.getLastLocation();
-		((TextView) findViewById(R.id.dynamic_list_text_view))
-				.append(currentLocation.toString());
-		
+		showClosestStores();
 	}
 
 	@Override
@@ -165,7 +188,107 @@ public class DynamicListActivity extends Activity implements
 				+ Double.toString(location.getLatitude()) + ","
 				+ Double.toString(location.getLongitude());
 		Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-		((TextView) findViewById(R.id.dynamic_list_text_view)).append(location
-				.toString());
+		showClosestStores();
+	}
+
+	private void showClosestStores() {
+		String[] fullStoreNames = getStoreNames(getBuildingNames(getClosestBuildings()));
+		final ListView list = (ListView) findViewById(R.id.dynamicListView);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, fullStoreNames);
+		list.setAdapter(adapter);
+		list.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				String itemValue = (String) list.getItemAtPosition(position);
+				Toast.makeText(getApplication(), itemValue, Toast.LENGTH_SHORT)
+						.show();
+				Intent intent = new Intent(getApplicationContext(),
+						MenuDisplayActivity.class);
+				intent.putExtra(MainActivity.LOCATION_DATA, itemValue);
+				startActivity(intent);
+			}
+		});
+
+		// list.addView(new TextView(getParent()));
+	}
+
+	private String[] getStoreNames(String[] buildingNames) {
+		ArrayList<String> list = new ArrayList<String>();
+		for (String s : buildingNames) {
+			for (String t : MainActivity.QUALIFIED_STORE_LIST) {
+				if (t.startsWith(s)) list.add(t);
+			}
+		}
+		return list.toArray(new String[list.size()]);
+
+	}
+
+	private String[] getBuildingNames(
+			PriorityQueue<Entry<String, Location>> closestBuildings) {
+		String[] arr = new String[4];
+		int i = 0;
+		for (Entry<String, Location> e : closestBuildings) {
+			arr[i] = e.getKey();
+			i++;
+			if (i >= 4) break;
+		}
+		return arr;
+	}
+
+	private PriorityQueue<Entry<String, Location>> getClosestBuildings() {
+		if (locationMap == null) {
+			createLocationMap();
+		}
+		PriorityQueue<Entry<String, Location>> closest = new PriorityQueue<Entry<String, Location>>(
+				4, new ClosestLocationComparator(currentLocation));
+
+		int i = 0;
+		for (Entry<String, Location> e : locationMap.entrySet()) {
+			if (i < 4) {
+				closest.offer(e);
+				i++;
+			} else {
+				Entry<String, Location> f = closest.peek();
+				if (f.getValue().distanceTo(currentLocation) > e.getValue()
+						.distanceTo(currentLocation)) {
+					closest.poll();
+					closest.offer(e);
+				}
+			}
+		}
+		System.out.println(closest.toString());
+		return closest;
+	}
+
+	private void createLocationMap() {
+		File locationCache = new File(getCacheDir(), "locCache");
+		if (!locationCache.exists()) throw new IllegalStateException();
+		locationMap = new HashMap<String, Location>();
+		BufferedReader br = null;
+		try {
+			br = new BufferedReader(new FileReader(locationCache));
+			String line = br.readLine();
+			while (line != null) {
+				String[] arr = line.split(",");
+				Location l = new Location("cps630");
+				l.setLatitude(Double.parseDouble(arr[1]));
+				l.setLongitude(Double.parseDouble(arr[2]));
+				locationMap.put(arr[0], l);
+				line = br.readLine();
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				br.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

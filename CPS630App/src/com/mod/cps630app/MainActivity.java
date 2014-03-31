@@ -1,15 +1,10 @@
 package com.mod.cps630app;
 
-import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.OutputStream;
-import java.io.Writer;
-import java.util.Arrays;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -22,7 +17,14 @@ import android.view.Menu;
 import android.view.View;
 
 public class MainActivity extends Activity {
-	public static final String	LOCATION_DATA	= "com.mod.cps630app.LOCATION";
+	public static final String		LOCATION_DATA			= "com.mod.cps630app.LOCATION";
+
+	/** Because this is easier for now **/
+	public static final String[]	QUALIFIED_STORE_LIST	= new String[] {
+			"Ted Rogers.7.Tim Hortons", "Ted Rogers.9.Tim Hortons",
+			"Kerr Hall.2.Tim Hortons", "Library.1.Tim Hortons",
+			"Engineering Building.1.Tim Hortons",
+			"Image Arts Building.1.Balzacs", "Eric Palin Hall.1.Expressos" };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,10 +80,8 @@ public class MainActivity extends Activity {
 				eventType = locationsXml.next();
 			}
 		} catch (XmlPullParserException e) {
-			eventType = 1;
 			e.printStackTrace();
 		} catch (IOException e) {
-			eventType = 1;
 			e.printStackTrace();
 		} finally {
 			try {
