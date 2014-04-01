@@ -9,18 +9,18 @@ import java.io.IOException;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
-import android.view.Menu;
 import android.view.View;
 
 public class MainActivity extends Activity {
-	public static final String		LOCATION_DATA			= "com.mod.cps630app.LOCATION";
+	public static final String LOCATION_DATA = "com.mod.cps630app.LOCATION";
 
 	/** Because this is easier for now **/
-	public static final String[]	QUALIFIED_STORE_LIST	= new String[] {
+	public static final String[] QUALIFIED_STORE_LIST = new String[] {
 			"Ted Rogers.7.Tim Hortons", "Ted Rogers.9.Tim Hortons",
 			"Kerr Hall.2.Tim Hortons", "Library.1.Tim Hortons",
 			"Engineering Building.1.Tim Hortons",
@@ -31,7 +31,9 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_fullscreen);
 		readLocationsXML();
-		getActionBar().hide();
+		ActionBar bar = getActionBar();
+		if (bar != null)
+			bar.hide();
 
 	}
 
@@ -71,9 +73,12 @@ public class MainActivity extends Activity {
 					}
 				} else if (eventType == XmlPullParser.END_TAG) {
 					String tagName = locationsXml.getName();
-					if (tagName.equals("Name")) data[0] = text;
-					if (tagName.equals("latitude")) data[1] = text;
-					if (tagName.equals("longitude")) data[2] = text;
+					if (tagName.equals("Name"))
+						data[0] = text;
+					if (tagName.equals("latitude"))
+						data[1] = text;
+					if (tagName.equals("longitude"))
+						data[2] = text;
 				} else if (eventType == XmlPullParser.TEXT) {
 					text = locationsXml.getText();
 				}
@@ -98,12 +103,12 @@ public class MainActivity extends Activity {
 		super.onPostCreate(savedInstanceState);
 	}
 
-//	@Override
-//	public boolean onCreateOptionsMenu(Menu menu) {
-//		// Inflate the menu; this adds items to the action bar if it is present.
-//		getMenuInflater().inflate(R.menu.menu_display, menu);
-//		return true;
-//	}
+	// @Override
+	// public boolean onCreateOptionsMenu(Menu menu) {
+	// // Inflate the menu; this adds items to the action bar if it is present.
+	// getMenuInflater().inflate(R.menu.menu_display, menu);
+	// return true;
+	// }
 
 	public void showStaticLocations(View view) {
 		Intent intent = new Intent(this, StaticListActivity.class);
