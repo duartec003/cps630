@@ -31,6 +31,7 @@ public class MainActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_fullscreen);
 		readLocationsXML();
+		getActionBar().hide();
 
 	}
 
@@ -97,12 +98,12 @@ public class MainActivity extends Activity {
 		super.onPostCreate(savedInstanceState);
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.menu_display, menu);
-		return true;
-	}
+//	@Override
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		// Inflate the menu; this adds items to the action bar if it is present.
+//		getMenuInflater().inflate(R.menu.menu_display, menu);
+//		return true;
+//	}
 
 	public void showStaticLocations(View view) {
 		Intent intent = new Intent(this, StaticListActivity.class);

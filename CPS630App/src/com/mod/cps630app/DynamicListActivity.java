@@ -231,6 +231,7 @@ public class DynamicListActivity extends Activity implements
 
 	}
 
+	@SuppressWarnings("unchecked")
 	private String[] getBuildingNames(
 			PriorityQueue<Entry<String, Location>> closestBuildings) {
 		String[] arr = new String[4];
@@ -239,7 +240,6 @@ public class DynamicListActivity extends Activity implements
 		for (int i = 0; i < 4; i++) {
 			arr[i] = cArr[3 - i].getKey();
 		}
-
 		return arr;
 	}
 
