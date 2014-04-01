@@ -8,7 +8,10 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map.Entry;
 import java.util.PriorityQueue;
 
@@ -47,19 +50,19 @@ public class DynamicListActivity extends Activity implements
 		GooglePlayServicesClient.ConnectionCallbacks,
 		GooglePlayServicesClient.OnConnectionFailedListener, LocationListener {
 
-	private static final int			CONNECTION_FAILURE_RESOLUTION_REQUEST	= 9000;
-	private static final int			MILLISECONDS_PER_SECOND					= 1000;
-	public static final int				UPDATE_INTERVAL_IN_SECONDS				= 5;
-	private static final long			UPDATE_INTERVAL							= MILLISECONDS_PER_SECOND
-																						* UPDATE_INTERVAL_IN_SECONDS;
-	private static final int			FASTEST_INTERVAL_IN_SECONDS				= 1;
-	private static final long			FASTEST_INTERVAL						= MILLISECONDS_PER_SECOND
-																						* FASTEST_INTERVAL_IN_SECONDS;
-	private LocationClient				locationClient;
-	private Location					currentLocation;
-	private LocationRequest				locationRequest;
+	private static final int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+	private static final int MILLISECONDS_PER_SECOND = 1000;
+	public static final int UPDATE_INTERVAL_IN_SECONDS = 5;
+	private static final long UPDATE_INTERVAL = MILLISECONDS_PER_SECOND
+			* UPDATE_INTERVAL_IN_SECONDS;
+	private static final int FASTEST_INTERVAL_IN_SECONDS = 1;
+	private static final long FASTEST_INTERVAL = MILLISECONDS_PER_SECOND
+			* FASTEST_INTERVAL_IN_SECONDS;
+	private LocationClient locationClient;
+	private Location currentLocation;
+	private LocationRequest locationRequest;
 
-	private HashMap<String, Location>	locationMap;
+	private HashMap<String, Location> locationMap;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -92,18 +95,17 @@ public class DynamicListActivity extends Activity implements
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (requestCode) {
-			case CONNECTION_FAILURE_RESOLUTION_REQUEST:
+		case CONNECTION_FAILURE_RESOLUTION_REQUEST:
+			/*
+			 * If the result code is Activity.RESULT_OK, try to connect again
+			 */
+			switch (resultCode) {
+			case Activity.RESULT_OK:
 				/*
-				 * If the result code is Activity.RESULT_OK, try to connect
-				 * again
+				 * Try the request again
 				 */
-				switch (resultCode) {
-					case Activity.RESULT_OK:
-						/*
-						 * Try the request again
-						 */
-						break;
-				}
+				break;
+			}
 		}
 
 	}
@@ -218,8 +220,11 @@ public class DynamicListActivity extends Activity implements
 	private String[] getStoreNames(String[] buildingNames) {
 		ArrayList<String> list = new ArrayList<String>();
 		for (String s : buildingNames) {
+			String distStr = String.format(Locale.ENGLISH, " %.2f m",
+					locationMap.get(s).distanceTo(currentLocation));
 			for (String t : MainActivity.QUALIFIED_STORE_LIST) {
-				if (t.startsWith(s)) list.add(t);
+				if (t.startsWith(s))
+					list.add(t + distStr);
 			}
 		}
 		return list.toArray(new String[list.size()]);
@@ -229,12 +234,12 @@ public class DynamicListActivity extends Activity implements
 	private String[] getBuildingNames(
 			PriorityQueue<Entry<String, Location>> closestBuildings) {
 		String[] arr = new String[4];
-		int i = 0;
-		for (Entry<String, Location> e : closestBuildings) {
-			arr[i] = e.getKey();
-			i++;
-			if (i >= 4) break;
+		Entry<String, Location>[] cArr = closestBuildings.toArray(new Entry[closestBuildings
+				.size()]);
+		for (int i = 0; i < 4; i++) {
+			arr[i] = cArr[3 - i].getKey();
 		}
+
 		return arr;
 	}
 
@@ -265,7 +270,8 @@ public class DynamicListActivity extends Activity implements
 
 	private void createLocationMap() {
 		File locationCache = new File(getCacheDir(), "locCache");
-		if (!locationCache.exists()) throw new IllegalStateException();
+		if (!locationCache.exists())
+			throw new IllegalStateException();
 		locationMap = new HashMap<String, Location>();
 		BufferedReader br = null;
 		try {
