@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <drink>
+        <coffee> Coffee </coffee>
+        <tea> Orange Pekoe </tea>
+        <tea> Earl Gray</tea>
+        <tea> Green Tea</tea>
+        <tea> Chai Tea</tea>
+        <tea> Peppermint Tea</tea>
+        <tea> Honey Lemon Tea</tea>
+        <tea> Blueberry white Tea</tea>
+        <tea> Pomegranate white Tea</tea>
+        <tea> Camomille Tea</tea>
+        <tea> Chai Tea</tea>
+        <tea> English Breakfast</tea>
+        <latte>Latte</latte>
+        <latte>French Vanilla</latte>
+        <latte>Vanilla Bean</latte>
+		<latte>Cafe Mocha</latte>
+		<latte>Creamy Caramel</latte>
+		<latte>Hazelnut</latte>
+		<latte>Mint Chocolate</latte>
+		<hot-chocolate>Regular</hot-chocolate>
+		<hot-chocolate>White</hot-chocolate>
+		<cold>Iced Capp</cold>
+		<cold>Iced Coffee</cold>
+		<cold>Frozen Lemonade</cold>				
+	</drink>
+</root>
