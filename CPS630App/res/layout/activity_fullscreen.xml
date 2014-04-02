@@ -12,9 +12,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:paddingBottom="40dp"
         android:gravity="center_horizontal"
         android:keepScreenOn="true"
+        android:paddingBottom="40dp"
         android:text="@string/app_title"
         android:textColor="#ffffff"
         android:textSize="50sp"
@@ -23,16 +23,18 @@
     <Button
         android:id="@+id/button1"
         android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.5"
+        android:onClick="showDynamicLocations"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:layout_height="150dp"
-        android:onClick="showDynamicLocations"
         android:text="@string/button_gps" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="200dp"
-        android:layout_height="150dp"
+        android:layout_width="fill_parent"
+        android:layout_height="0dip"
+        android:layout_weight="0.5"
         android:onClick="showStaticLocations"
         android:text="@string/button_other" />
 
