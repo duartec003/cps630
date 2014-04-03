@@ -2,9 +2,15 @@ package com.mod.cps630app;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.StreamCorruptedException;
+import java.math.BigDecimal;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -17,10 +23,10 @@ import android.os.Bundle;
 import android.view.View;
 
 public class MainActivity extends Activity {
-	public static final String LOCATION_DATA = "com.mod.cps630app.LOCATION";
+	public static final String		LOCATION_DATA			= "com.mod.cps630app.LOCATION";
 
 	/** Because this is easier for now **/
-	public static final String[] QUALIFIED_STORE_LIST = new String[] {
+	public static final String[]	QUALIFIED_STORE_LIST	= new String[] {
 			"Ted Rogers.7.Tim Hortons", "Ted Rogers.9.Tim Hortons",
 			"Kerr Hall.2.Tim Hortons", "Library.1.Tim Hortons",
 			"Engineering Building.1.Tim Hortons",
@@ -32,9 +38,7 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_fullscreen);
 		readLocationsXML();
 		ActionBar bar = getActionBar();
-		if (bar != null)
-			bar.hide();
-
+		if (bar != null) bar.hide();
 	}
 
 	private void readLocationsXML() {
@@ -73,12 +77,9 @@ public class MainActivity extends Activity {
 					}
 				} else if (eventType == XmlPullParser.END_TAG) {
 					String tagName = locationsXml.getName();
-					if (tagName.equals("Name"))
-						data[0] = text;
-					if (tagName.equals("latitude"))
-						data[1] = text;
-					if (tagName.equals("longitude"))
-						data[2] = text;
+					if (tagName.equals("Name")) data[0] = text;
+					if (tagName.equals("latitude")) data[1] = text;
+					if (tagName.equals("longitude")) data[2] = text;
 				} else if (eventType == XmlPullParser.TEXT) {
 					text = locationsXml.getText();
 				}
