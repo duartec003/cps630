@@ -27,7 +27,9 @@ public class StaticListActivity extends Activity {
 
   
   /*Add Data to The list*/
+  
   public void createData() {
+	 
 	 	  
     for (int j = 0; j < 5; j++) {
   	  /*Add Data to The Main list <The Buildings>*/

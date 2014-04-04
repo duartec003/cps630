@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">CPS630App</string>
+    <string name="app_name">Expresso</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="app_title">expresso</string>
     <string name="button_gps">GPS MAP</string>
