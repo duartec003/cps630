@@ -194,6 +194,7 @@ public class DynamicListActivity extends Activity implements
 		if (currentLocation != null) showClosestStores();
 		else Toast.makeText(getApplicationContext(),
 				"Can't connect to Google Play Services", Toast.LENGTH_SHORT).show();
+		
 	}
 
 	private void showClosestStores() {
