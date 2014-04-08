@@ -1,0 +1,14 @@
+{
+	"Beverages" : { 
+		"Coffee" : [ "Coffee", "Latte", "Cappucino", "Americano", "Espresso"],
+		"Tea" : [ "Orange Pekoe", "English Breakfast", "Earl Grey", "Green Tea", 
+				  "Honey Lemon", "Apple Cinnamon", "Blueberry White", 
+				  "Pomegranate White", "Chamomile", "Peppermint", 
+				   "Chai Tea" ],
+		"Tea Latte": [ "Green Tea", "Chai", "Peppermint", "Earl Grey", "Orange Pekoe" ],
+		
+		"Cold Beverages" : [ "Iced Capp", "Frozen Lemonade", "Iced Capp Supreme", 
+							 "Strawberry Banana Real Fruit Smoothie", "Iced Coffee,
+							 "Iced Latte" ]
+	}
+}
