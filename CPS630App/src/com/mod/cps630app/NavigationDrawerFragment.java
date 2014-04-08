@@ -73,11 +73,7 @@ public class NavigationDrawerFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		JSONObject json = createJSONObject(getJSONString());
-		Iterator<?> iter = json.keys();
-		while(iter.hasNext()) {
-			System.out.println(iter.next().toString());
-		}
+		
 		// Read in the flag indicating whether or not the user has demonstrated
 		// awareness of the
 		// drawer. See PREF_USER_LEARNED_DRAWER for details.
@@ -95,29 +91,7 @@ public class NavigationDrawerFragment extends Fragment {
 		selectItem(mCurrentSelectedPosition);
 	}
 
-	private JSONObject createJSONObject(String jsonString) {
-		try {
-			return new JSONObject(getJSONString());
-		} catch (JSONException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
-	private String getJSONString() {
-		try {
-			Resources res = getResources();
-			InputStream in_s = res.openRawResource(R.raw.tim_hortons);
-
-			byte[] b = new byte[in_s.available()];
-			in_s.read(b);
-			return new String(b);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-
+	
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);

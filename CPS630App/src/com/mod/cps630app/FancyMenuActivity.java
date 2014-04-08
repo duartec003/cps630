@@ -1,6 +1,13 @@
 package com.mod.cps630app;
 
+import java.io.InputStream;
+import java.util.Iterator;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -28,11 +35,19 @@ public class FancyMenuActivity extends ActionBarActivity implements
 	 * {@link #restoreActionBar()}.
 	 */
 	private CharSequence				mTitle;
+	private JSONObject					json;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_fancy_menu);
+
+		json = createJSONObject(getJSONString());
+
+		Iterator<?> iter = json.keys();
+		while (iter.hasNext()) {
+			System.out.println(iter.next().toString());
+		}
 
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager()
 				.findFragmentById(R.id.navigation_drawer);
@@ -41,6 +56,29 @@ public class FancyMenuActivity extends ActionBarActivity implements
 		// Set up the drawer.
 		mNavigationDrawerFragment.setUp(R.id.navigation_drawer,
 				(DrawerLayout) findViewById(R.id.drawer_layout));
+	}
+
+	private JSONObject createJSONObject(String jsonString) {
+		try {
+			return new JSONObject(getJSONString());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		throw new NullPointerException("JSON object not created");
+	}
+
+	private String getJSONString() {
+		try {
+			Resources res = getResources();
+			InputStream in_s = res.openRawResource(R.raw.tim_hortons);
+
+			byte[] b = new byte[in_s.available()];
+			in_s.read(b);
+			return new String(b);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		throw new NullPointerException("JSON string not created");
 	}
 
 	@Override
@@ -64,12 +102,15 @@ public class FancyMenuActivity extends ActionBarActivity implements
 			case 3:
 				mTitle = getString(R.string.title_section3);
 				break;
+			case 4:
+				mTitle = "asd";
+				break;
 		}
 	}
 
 	public void restoreActionBar() {
 		ActionBar actionBar = getSupportActionBar();
-		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
+		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
 		actionBar.setDisplayShowTitleEnabled(true);
 		actionBar.setTitle(mTitle);
 	}
