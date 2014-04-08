@@ -37,16 +37,20 @@ public class FancyMenuActivity extends ActionBarActivity implements
 	private CharSequence				mTitle;
 	private JSONObject					json;
 
+	private String[]					topLevel;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_fancy_menu);
 
 		json = createJSONObject(getJSONString());
-
+		topLevel = new String[json.length()];
 		Iterator<?> iter = json.keys();
+		int i = 0;
 		while (iter.hasNext()) {
-			System.out.println(iter.next().toString());
+			topLevel[i] = iter.next().toString();
+			i++;
 		}
 
 		mNavigationDrawerFragment = (NavigationDrawerFragment) getSupportFragmentManager()
@@ -88,7 +92,8 @@ public class FancyMenuActivity extends ActionBarActivity implements
 		fragmentManager
 				.beginTransaction()
 				.replace(R.id.container,
-						PlaceholderFragment.newInstance(position + 1)).commit();
+						MenuOpitonFragment.newInstance(topLevel[position]))
+				.commit();
 	}
 
 	public void onSectionAttached(int number) {
@@ -141,25 +146,25 @@ public class FancyMenuActivity extends ActionBarActivity implements
 	/**
 	 * A placeholder fragment containing a simple view.
 	 */
-	public static class PlaceholderFragment extends Fragment {
+	public static class MenuOpitonFragment extends Fragment {
 		/**
 		 * The fragment argument representing the section number for this
 		 * fragment.
 		 */
-		private static final String	ARG_SECTION_NUMBER	= "section_number";
+		private static final String	ARG_SECTION_NAME	= "section_name";
 
 		/**
 		 * Returns a new instance of this fragment for the given section number.
 		 */
-		public static PlaceholderFragment newInstance(int sectionNumber) {
-			PlaceholderFragment fragment = new PlaceholderFragment();
+		public static MenuOpitonFragment newInstance(String sectionName) {
+			MenuOpitonFragment fragment = new MenuOpitonFragment();
 			Bundle args = new Bundle();
-			args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+			args.putString(ARG_SECTION_NAME, sectionName);
 			fragment.setArguments(args);
 			return fragment;
 		}
 
-		public PlaceholderFragment() {}
+		public MenuOpitonFragment() {}
 
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -169,7 +174,7 @@ public class FancyMenuActivity extends ActionBarActivity implements
 			TextView textView = (TextView) rootView
 					.findViewById(R.id.section_label);
 			textView.setText(Integer.toString(getArguments().getInt(
-					ARG_SECTION_NUMBER)));
+					ARG_SECTION_NAME)));
 			return rootView;
 		}
 
@@ -177,7 +182,7 @@ public class FancyMenuActivity extends ActionBarActivity implements
 		public void onAttach(Activity activity) {
 			super.onAttach(activity);
 			((FancyMenuActivity) activity).onSectionAttached(getArguments()
-					.getInt(ARG_SECTION_NUMBER));
+					.getInt(ARG_SECTION_NAME));
 		}
 	}
 
