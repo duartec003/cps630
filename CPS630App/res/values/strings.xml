@@ -32,4 +32,8 @@
     <string name="logo">Expresso Logo</string>
     <string name="title_activity_splash">Splash</string>
 
+    <string name="find_your_store">FIND YOUR STORE:</string>
+    <string name="order_summary">ORDER SUMMARY:</string>
+    <string name="order_total">ORDER TOTAL:</string>
+
 </resources>
