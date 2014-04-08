@@ -13,5 +13,16 @@
     <string name="title_activity_menu_display">MenuDisplayActivity</string>
     <string name="title_activity_payment">PaymentActivity</string>
     <string name="title_activity_confirmation">ConfirmationActivity</string>
+    <string name="order_confirmation">Order Confirmation</string>
+    <string name="order_number">Order #:</string>
+    <string name="OrderNum">1234567</string>
+    <string name="order_time">Date/Time:</string>
+    <string name="order">Item:</string>
+    <string name="order_time_content">12:10:00 pm</string>
+
+    <string-array name="order_content"></string-array>
+
+    <string name="logo">Expresso Logo</string>
+    <string name="title_activity_splash">Splash</string>
 
 </resources>
