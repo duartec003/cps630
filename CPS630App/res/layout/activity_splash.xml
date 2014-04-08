@@ -8,10 +8,10 @@
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_x="55dp"
-        android:layout_y="22dp"
-        android:src="@drawable/cup"
-        android:contentDescription="@string/logo" />
+        android:layout_x="119dp"
+        android:layout_y="29dp"
+        android:contentDescription="@string/logo"
+        android:src="@drawable/cup" />
 
     <TextView
         android:id="@+id/fullscreen_content"
@@ -28,26 +28,26 @@
         android:textSize="50sp"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="133dp"
-        android:layout_height="133dp"
-        android:layout_x="96dp"
-        android:layout_y="260dp"
-        android:src="@drawable/loading" />
-
     <TextView
         android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="200dp"
-        android:layout_x="4dp"
-        android:layout_y="319dp"
+        android:layout_x="0dp"
+        android:layout_y="320dp"
         android:gravity="center_horizontal"
         android:keepScreenOn="true"
         android:paddingBottom="40dp"
         android:text="running..."
         android:textColor="#000000"
         android:textSize="10sp" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleLarge"
+        android:layout_width="115dp"
+        android:layout_height="115dp"
+        android:layout_x="133dp"
+        android:layout_y="271dp" />
     
 </AbsoluteLayout>
