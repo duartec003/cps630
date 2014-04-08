@@ -1,8 +1,16 @@
 package com.mod.cps630app;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -66,6 +74,8 @@ public class NavigationDrawerFragment extends Fragment {
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
+		JSONObject json = createJSONObject(getJSONString());
+		
 		// Read in the flag indicating whether or not the user has demonstrated
 		// awareness of the
 		// drawer. See PREF_USER_LEARNED_DRAWER for details.
@@ -81,6 +91,29 @@ public class NavigationDrawerFragment extends Fragment {
 
 		// Select either the default item (0) or the last selected item.
 		selectItem(mCurrentSelectedPosition);
+	}
+
+	private JSONObject createJSONObject(String jsonString) {
+		try {
+			return new JSONObject(getJSONString());
+		} catch (JSONException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	private String getJSONString() {
+		try {
+			Resources res = getResources();
+			InputStream in_s = res.openRawResource(R.raw.tim_hortons);
+
+			byte[] b = new byte[in_s.available()];
+			in_s.read(b);
+			return new String(b);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@Override

@@ -87,7 +87,7 @@ public class DynamicListActivity extends Activity implements
 	// This should be called by whatever should switch to the menu page
 	// This isn't called anywhere yets
 	public void onSelectLocation(View view) {
-		Intent intent = new Intent(this, MenuDisplayActivity.class);
+		Intent intent = new Intent(this, FancyMenuActivity.class);
 		intent.putExtra(MainActivity.LOCATION_DATA,
 				"string representation of stuff");
 	}
@@ -167,7 +167,8 @@ public class DynamicListActivity extends Activity implements
 
 		if (currentLocation != null) showClosestStores();
 		else Toast.makeText(getApplicationContext(),
-				"Can't connect to Google Play Services", Toast.LENGTH_SHORT).show();
+				"Can't connect to Google Play Services", Toast.LENGTH_SHORT)
+				.show();
 	}
 
 	@Override
@@ -193,8 +194,9 @@ public class DynamicListActivity extends Activity implements
 		currentLocation = location;
 		if (currentLocation != null) showClosestStores();
 		else Toast.makeText(getApplicationContext(),
-				"Can't connect to Google Play Services", Toast.LENGTH_SHORT).show();
-		
+				"Can't connect to Google Play Services", Toast.LENGTH_SHORT)
+				.show();
+
 	}
 
 	private void showClosestStores() {
