@@ -1,8 +1,7 @@
 package com.mod.cps630app;
 
-import java.io.BufferedReader;
 import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.util.Iterator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -75,7 +74,10 @@ public class NavigationDrawerFragment extends Fragment {
 		super.onCreate(savedInstanceState);
 
 		JSONObject json = createJSONObject(getJSONString());
-		
+		Iterator<?> iter = json.keys();
+		while(iter.hasNext()) {
+			System.out.println(iter.next().toString());
+		}
 		// Read in the flag indicating whether or not the user has demonstrated
 		// awareness of the
 		// drawer. See PREF_USER_LEARNED_DRAWER for details.

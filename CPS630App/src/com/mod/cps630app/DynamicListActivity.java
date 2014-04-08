@@ -214,7 +214,7 @@ public class DynamicListActivity extends Activity implements
 				Toast.makeText(getApplication(), itemValue, Toast.LENGTH_SHORT)
 						.show();
 				Intent intent = new Intent(getApplicationContext(),
-						MenuDisplayActivity.class);
+						FancyMenuActivity.class);
 				intent.putExtra(MainActivity.LOCATION_DATA, itemValue);
 				startActivity(intent);
 			}
