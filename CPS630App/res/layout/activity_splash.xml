@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="#8cd3cf"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="55dp"
+        android:layout_y="22dp"
+        android:src="@drawable/cup"
+        android:contentDescription="@string/logo" />
+
+    <TextView
+        android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_x="1dp"
+        android:layout_y="167dp"
+        android:gravity="center_horizontal"
+        android:keepScreenOn="true"
+        android:paddingBottom="40dp"
+        android:text="@string/app_title"
+        android:textColor="#ffffff"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="133dp"
+        android:layout_height="133dp"
+        android:layout_x="96dp"
+        android:layout_y="260dp"
+        android:src="@drawable/loading" />
+
+    <TextView
+        android:id="@+id/fullscreen_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_x="4dp"
+        android:layout_y="319dp"
+        android:gravity="center_horizontal"
+        android:keepScreenOn="true"
+        android:paddingBottom="40dp"
+        android:text="running..."
+        android:textColor="#000000"
+        android:textSize="10sp" />
+    
+</AbsoluteLayout>
