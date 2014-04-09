@@ -17,7 +17,6 @@ import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
-import android.location.LocationListener;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -27,6 +26,13 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GooglePlayServicesClient;
+import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.location.LocationClient;
+import com.google.android.gms.location.LocationListener;
+import com.google.android.gms.location.LocationRequest;
 
 public class DynamicListActivity extends Activity implements
 		GooglePlayServicesClient.ConnectionCallbacks,
