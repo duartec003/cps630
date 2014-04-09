@@ -66,4 +66,12 @@ public class Order implements Serializable {
 		sb.setLength(sb.length() - 2);
 		return sb.toString();
 	}
+
+	public int size() {
+		return items.size();
+	}
+
+	public OrderItem get(int i) {
+		return items.get(i);
+	}
 }

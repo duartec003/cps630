@@ -9,19 +9,23 @@ import org.json.JSONObject;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.mod.cps630app.menu.NavListFragment;
+import com.mod.cps630app.menu.OrderDisplayFragment;
 import com.mod.cps630app.util.JSONHelper;
 
 public class MenuDisplayActivity extends FragmentActivity implements
-		NavListFragment.OnItemSelectedListener {
+		NavListFragment.OnItemSelectedListener,
+		OrderDisplayFragment.ViewOrderListener {
 
 	public static final String	MENU_DISPLAY_CONTENTS	= "com.mod.cps630.MENU_DISPLAY_CONTENTS";
 	public static final String	MENU_LEVEL				= "com.mod.cps630.MENU_LEVEL";
 	public static final String	BEV						= "Beverages";
 	private JSONObject			json;
 	private Order				order;
+	private String				currentHeader;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,26 @@ public class MenuDisplayActivity extends FragmentActivity implements
 	}
 
 	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (order.size() == 0) {
+			Toast.makeText(this, "You haven't added any items yet",
+					Toast.LENGTH_SHORT).show();
+			return true;
+		}
+		if (item.getItemId() == R.id.view_order) {
+			OrderDisplayFragment frag = new OrderDisplayFragment();
+
+			Bundle b = new Bundle();
+			frag.setArguments(b);
+
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.fragment_container, frag)
+					.addToBackStack(null).commit();
+		}
+		return true;
+	}
+
+	@Override
 	// This is for fragment to activity to fragment communication
 	public void onItemSelected(String itemName, int level) {
 		String[] displayList = null;
@@ -78,6 +102,7 @@ public class MenuDisplayActivity extends FragmentActivity implements
 			int i = 0;
 			while (iter.hasNext())
 				displayList[i++] = iter.next().toString();
+			currentHeader = itemName;
 
 		} else if (level == 1) {
 			JSONObject jObj = null;
@@ -100,8 +125,11 @@ public class MenuDisplayActivity extends FragmentActivity implements
 				} catch (JSONException e) {
 					e.printStackTrace();
 				}
+			currentHeader = itemName;
 		} else if (level == 2) {
 			Toast.makeText(this, "Added to order", Toast.LENGTH_SHORT).show();
+			order.addItem(new OrderItem().name(currentHeader + ": " + itemName)
+					.cost(CostLookUp.costFor(itemName)));
 			displayList = new String[] { BEV };
 			level = -1;
 		}
@@ -115,5 +143,21 @@ public class MenuDisplayActivity extends FragmentActivity implements
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.fragment_container, frag).addToBackStack(null)
 				.commit();
+	}
+
+	public Order getOrder() {
+		return order;
+	}
+
+	@Override
+	public void onItemSelectedInOrder(int position) {
+		order.removeItem(position);
+		OrderDisplayFragment frag = new OrderDisplayFragment();
+
+		Bundle b = new Bundle();
+		frag.setArguments(b);
+
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.fragment_container, frag).commit();
 	}
 }
