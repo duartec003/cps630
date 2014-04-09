@@ -1,12 +1,9 @@
 package com.mod.cps630app;
 
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.SparseArray;
-import android.view.Menu;
 import android.widget.ExpandableListView;
 
 public class StaticListActivity extends Activity {

@@ -6,12 +6,12 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.widget.Toast;
 
+import com.mod.cps630app.menu.NavListFragment;
 import com.mod.cps630app.util.JSONHelper;
 
 public class MenuDisplayActivity extends FragmentActivity implements
@@ -20,19 +20,21 @@ public class MenuDisplayActivity extends FragmentActivity implements
 	public static final String	MENU_DISPLAY_CONTENTS	= "com.mod.cps630.MENU_DISPLAY_CONTENTS";
 	public static final String	MENU_LEVEL				= "com.mod.cps630.MENU_LEVEL";
 	public static final String	BEV						= "Beverages";
-	JSONObject					json;
+	private JSONObject			json;
+	private Order				order;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_menu_display);
 
-		Intent intent = getIntent();
+		// Intent intent = getIntent();
 		// Should use message to choose which menu to load.
-		String message = intent.getStringExtra(MainActivity.LOCATION_DATA);
+		// String message = intent.getStringExtra(MainActivity.LOCATION_DATA);
 
 		json = JSONHelper.createJSONObject(JSONHelper.getJSONString(
 				getResources(), R.raw.tim_hortons));
+		if (order == null) order = new Order();
 		String[] topLevel = new String[json.length()];
 		Iterator<?> iter = json.keys();
 		int i = 0;

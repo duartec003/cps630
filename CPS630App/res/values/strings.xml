@@ -26,12 +26,12 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="action_example">Example action</string>
+    <string name="view_order">View Order</string>
 
     <string-array name="order_content"></string-array>
 
     <string name="logo">Expresso Logo</string>
     <string name="title_activity_splash">Splash</string>
-
     <string name="find_your_store">FIND YOUR STORE:</string>
     <string name="order_summary">ORDER SUMMARY:</string>
     <string name="order_total">ORDER TOTAL:</string>

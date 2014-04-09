@@ -1,4 +1,4 @@
-package com.mod.cps630app;
+package com.mod.cps630app.menu;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.mod.cps630app.MenuDisplayActivity;
+import com.mod.cps630app.R;
 
 public class NavListFragment extends Fragment {
 	OnItemSelectedListener	mCallback;
