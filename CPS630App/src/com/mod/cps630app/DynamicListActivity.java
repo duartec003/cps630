@@ -12,13 +12,11 @@ import java.util.Map.Entry;
 import java.util.PriorityQueue;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.app.DialogFragment;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,7 +27,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesClient;
-import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.location.LocationClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
@@ -55,20 +52,21 @@ public class DynamicListActivity extends Activity implements
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_dynamic_list);
+		this.setContentView(R.layout.activity_dynamic_list);
 
-		locationClient = new LocationClient(this, this, this);
+		this.locationClient = new LocationClient(this, this, this);
 
-		locationRequest = LocationRequest.create();
-		locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-		locationRequest.setInterval(UPDATE_INTERVAL);
-		locationRequest.setFastestInterval(FASTEST_INTERVAL);
+		this.locationRequest = LocationRequest.create();
+		this.locationRequest
+				.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+		this.locationRequest.setInterval(UPDATE_INTERVAL);
+		this.locationRequest.setFastestInterval(FASTEST_INTERVAL);
 	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.dynamic_list, menu);
+		this.getMenuInflater().inflate(R.menu.dynamic_list, menu);
 		return true;
 	}
 
@@ -91,38 +89,6 @@ public class DynamicListActivity extends Activity implements
 
 	}
 
-	private boolean servicesConnected() {
-		// Check that Google Play services is available
-		int resultCode = GooglePlayServicesUtil
-				.isGooglePlayServicesAvailable(this);
-		// If Google Play services is available
-		if (ConnectionResult.SUCCESS == resultCode) {
-			// In debug mode, log the status
-			Log.d("Location Updates", "Google Play services is available.");
-			// Continue
-			return true;
-			// Google Play services was not available for some reason
-		} else {
-			// Get the error code
-			int errorCode = 1/* connectionResult.getErrorCode() */;
-			// Get the error dialog from Google Play services
-			Dialog errorDialog = GooglePlayServicesUtil.getErrorDialog(
-					errorCode, this, CONNECTION_FAILURE_RESOLUTION_REQUEST);
-
-			// If Google Play services can provide an error dialog
-			if (errorDialog != null) {
-				// Create a new DialogFragment for the error dialog
-				DialogFragment errorFragment = new DialogFragment();
-				// Set the dialog in the DialogFragment
-				// errorFragment.setShowsDialog(errorDialog);
-				// Show the error dialog in the DialogFragment
-				errorFragment.show(getFragmentManager(), "Location Updates");
-				return false;
-			}
-		}
-		return false;
-	}
-
 	@Override
 	public void onConnectionFailed(ConnectionResult connectionResult) {
 		if (connectionResult.hasResolution()) {
@@ -134,7 +100,7 @@ public class DynamicListActivity extends Activity implements
 			}
 		} else {
 			DialogFragment errorFragment = new DialogFragment();
-			errorFragment.show(getFragmentManager(),
+			errorFragment.show(this.getFragmentManager(),
 					connectionResult.getErrorCode() + "");
 		}
 
@@ -143,12 +109,15 @@ public class DynamicListActivity extends Activity implements
 	@Override
 	public void onConnected(Bundle bundle) {
 		Toast.makeText(this, "Connected", Toast.LENGTH_SHORT).show();
-		currentLocation = locationClient.getLastLocation();
+		this.currentLocation = this.locationClient.getLastLocation();
 
-		if (currentLocation != null) showClosestStores();
-		else Toast.makeText(getApplicationContext(),
-				"Can't connect to Google Play Services", Toast.LENGTH_SHORT)
-				.show();
+		if (this.currentLocation != null) {
+			this.showClosestStores();
+		} else {
+			Toast.makeText(this.getApplicationContext(),
+					"Can't connect to Google Play Services", Toast.LENGTH_SHORT)
+					.show();
+		}
 	}
 
 	@Override
@@ -160,28 +129,33 @@ public class DynamicListActivity extends Activity implements
 	@Override
 	protected void onStart() {
 		super.onStart();
-		locationClient.connect();
+		this.locationClient.connect();
 	}
 
 	@Override
 	protected void onStop() {
-		locationClient.disconnect();
+		this.locationClient.disconnect();
 		super.onStop();
 	}
 
 	@Override
 	public void onLocationChanged(Location location) {
-		currentLocation = location;
-		if (currentLocation != null) showClosestStores();
-		else Toast.makeText(getApplicationContext(),
-				"Can't connect to Google Play Services", Toast.LENGTH_SHORT)
-				.show();
+		this.currentLocation = location;
+		if (this.currentLocation != null) {
+			this.showClosestStores();
+		} else {
+			Toast.makeText(this.getApplicationContext(),
+					"Can't connect to Google Play Services", Toast.LENGTH_SHORT)
+					.show();
+		}
 
 	}
 
 	private void showClosestStores() {
-		String[] fullStoreNames = getStoreNames(getBuildingNames(getClosestBuildings()));
-		final ListView list = (ListView) findViewById(R.id.dynamicListView);
+		String[] fullStoreNames = this.getStoreNames(this.getBuildingNames(this
+				.getClosestBuildings()));
+		final ListView list = (ListView) this
+				.findViewById(R.id.dynamicListView);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, fullStoreNames);
 		list.setAdapter(adapter);
@@ -191,12 +165,12 @@ public class DynamicListActivity extends Activity implements
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				String itemValue = (String) list.getItemAtPosition(position);
-				Toast.makeText(getApplication(), itemValue, Toast.LENGTH_SHORT)
-						.show();
-				Intent intent = new Intent(getApplicationContext(),
-						MenuDisplayActivity.class);
+				Toast.makeText(DynamicListActivity.this.getApplication(),
+						itemValue, Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(DynamicListActivity.this
+						.getApplicationContext(), MenuDisplayActivity.class);
 				intent.putExtra(MainActivity.LOCATION_DATA, itemValue);
-				startActivity(intent);
+				DynamicListActivity.this.startActivity(intent);
 			}
 		});
 
@@ -207,9 +181,11 @@ public class DynamicListActivity extends Activity implements
 		ArrayList<String> list = new ArrayList<String>();
 		for (String s : buildingNames) {
 			String distStr = String.format(Locale.ENGLISH, " %.2f m",
-					locationMap.get(s).distanceTo(currentLocation));
+					this.locationMap.get(s).distanceTo(this.currentLocation));
 			for (String t : MainActivity.QUALIFIED_STORE_LIST) {
-				if (t.startsWith(s)) list.add(t + distStr);
+				if (t.startsWith(s)) {
+					list.add(t + distStr);
+				}
 			}
 		}
 		return list.toArray(new String[list.size()]);
@@ -229,21 +205,21 @@ public class DynamicListActivity extends Activity implements
 	}
 
 	private PriorityQueue<Entry<String, Location>> getClosestBuildings() {
-		if (locationMap == null) {
-			createLocationMap();
+		if (this.locationMap == null) {
+			this.createLocationMap();
 		}
 		PriorityQueue<Entry<String, Location>> closest = new PriorityQueue<Entry<String, Location>>(
-				4, new ClosestLocationComparator(currentLocation));
+				4, new ClosestLocationComparator(this.currentLocation));
 
 		int i = 0;
-		for (Entry<String, Location> e : locationMap.entrySet()) {
+		for (Entry<String, Location> e : this.locationMap.entrySet()) {
 			if (i < 4) {
 				closest.offer(e);
 				i++;
 			} else {
 				Entry<String, Location> f = closest.peek();
-				if (f.getValue().distanceTo(currentLocation) > e.getValue()
-						.distanceTo(currentLocation)) {
+				if (f.getValue().distanceTo(this.currentLocation) > e
+						.getValue().distanceTo(this.currentLocation)) {
 					closest.poll();
 					closest.offer(e);
 				}
@@ -254,9 +230,9 @@ public class DynamicListActivity extends Activity implements
 	}
 
 	private void createLocationMap() {
-		File locationCache = new File(getCacheDir(), "locCache");
+		File locationCache = new File(this.getCacheDir(), "locCache");
 		if (!locationCache.exists()) throw new IllegalStateException();
-		locationMap = new HashMap<String, Location>();
+		this.locationMap = new HashMap<String, Location>();
 		BufferedReader br = null;
 		try {
 			br = new BufferedReader(new FileReader(locationCache));
@@ -266,7 +242,7 @@ public class DynamicListActivity extends Activity implements
 				Location l = new Location("cps630");
 				l.setLatitude(Double.parseDouble(arr[1]));
 				l.setLongitude(Double.parseDouble(arr[2]));
-				locationMap.put(arr[0], l);
+				this.locationMap.put(arr[0], l);
 				line = br.readLine();
 			}
 		} catch (FileNotFoundException e) {
