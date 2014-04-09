@@ -8,6 +8,7 @@ import org.json.JSONObject;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -140,9 +141,17 @@ public class MenuDisplayActivity extends FragmentActivity implements
 		b.putInt(MENU_LEVEL, level + 1);
 		frag.setArguments(b);
 
-		getSupportFragmentManager().beginTransaction()
+		if (level != -1) getSupportFragmentManager().beginTransaction()
 				.replace(R.id.fragment_container, frag).addToBackStack(null)
 				.commit();
+		else {
+			FragmentManager fm = getSupportFragmentManager();
+			for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+				fm.popBackStack();
+			}
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.fragment_container, frag).commit();
+		}
 	}
 
 	public Order getOrder() {
