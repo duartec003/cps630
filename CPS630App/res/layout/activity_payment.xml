@@ -9,32 +9,30 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".PaymentActivity" >
 
-      <TextView
-          android:id="@+id/fullscreen_content"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="50dp"
-          android:layout_marginTop="10dp"
-          android:keepScreenOn="true"
-          android:text="@string/app_title"
-          android:textColor="#fbf9d8"
-          android:textSize="50sp"
-          android:textStyle="bold" />
-      
-      <TextView
-          android:id="@+id/fullscreen_content"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="0dp"
-          android:layout_marginTop="100dp"
-          android:keepScreenOn="true"
-          android:text="@string/order_summary"
-          android:textColor="#000000"
-          android:textSize="20sp"
-          android:textStyle="" />
-      
-     <TextView
-        android:id="@+id/fullscreen_content"
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginTop="10dp"
+        android:keepScreenOn="true"
+        android:text="@string/app_title"
+        android:textColor="#fbf9d8"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="100dp"
+        android:keepScreenOn="true"
+        android:text="@string/order_summary"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="" />
+
+    <TextView
+        android:id="@+id/payment_order_summary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="160dp"
@@ -45,51 +43,53 @@
         android:textColor="#000000"
         android:textSize="20sp"
         android:textStyle="bold" />
-  	<View
-    	android:layout_width="fill_parent"
-    	android:layout_height="1dip"
-      	android:layout_marginTop="240dp"
-    	android:background="#000000"/>
-  
-      <TextView
-          android:id="@+id/fullscreen_content"
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="0dp"
-          android:layout_marginTop="250dp"
-          android:keepScreenOn="true"
-          android:text="@string/order_total"
-          android:textColor="#000000"
-          android:textSize="20sp"
-          android:textStyle="" />
-     
-  <Button
-            android:id="@+id/Debit"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="300dp"
-            android:layout_marginLeft="20dp"
-            android:layout_gravity="center_vertical"
-            android:text="Debit" 
-            android:onClick="showStaticLocations"/>
-  <Button
-            android:id="@+id/Credit"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="300dp"
-            android:layout_marginLeft="100dp"
-            android:layout_gravity="center_vertical"
-            android:text="Credit" 
-            android:onClick="showStaticLocations"/>
-  <Button
-            android:id="@+id/OneCard"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="300dp"
-            android:layout_marginLeft="180dp"
-            android:layout_gravity="center_vertical"
-            android:text="One Card" 
-            android:onClick="showStaticLocations"/>
-    
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dip"
+        android:layout_marginTop="240dp"
+        android:background="#000000" />
+
+    <TextView
+        android:id="@+id/payment_order_total"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="250dp"
+        android:keepScreenOn="true"
+        android:text="@string/order_total"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="" />
+
+    <Button
+        android:id="@+id/Debit"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="300dp"
+        android:onClick="showStaticLocations"
+        android:text="Debit" />
+
+    <Button
+        android:id="@+id/Credit"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="300dp"
+        android:onClick="showStaticLocations"
+        android:text="Credit" />
+
+    <Button
+        android:id="@+id/OneCard"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="180dp"
+        android:layout_marginTop="300dp"
+        android:onClick="showStaticLocations"
+        android:text="One Card" />
 
 </RelativeLayout>

@@ -10,7 +10,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.mod.cps630app.MenuDisplayActivity;
 import com.mod.cps630app.Order;
@@ -43,8 +42,8 @@ public class OrderDisplayFragment extends Fragment {
 		for (int i = 0; i < order.size(); i++) {
 			orderList[i] = order.get(i).getName();
 		}
-		View v = inflater.inflate(R.layout.nav_list, container, false);
-		ListView listView = (ListView) v.findViewById(R.id.nav_list_list_view);
+		View v = inflater.inflate(R.layout.order_view, container, false);
+		ListView listView = (ListView) v.findViewById(R.id.order_view_order_list);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
 				R.layout.menu_list_item, orderList);
 		listView.setAdapter(adapter);
