@@ -7,8 +7,6 @@ import org.json.JSONObject;
 
 import android.content.res.Resources;
 
-import com.mod.cps630app.R;
-
 public class JSONHelper {
 	public static JSONObject createJSONObject(String jsonString) {
 		try {
