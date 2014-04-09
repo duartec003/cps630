@@ -84,14 +84,6 @@ public class DynamicListActivity extends Activity implements
 		return true;
 	}
 
-	// This should be called by whatever should switch to the menu page
-	// This isn't called anywhere yets
-	public void onSelectLocation(View view) {
-		Intent intent = new Intent(this, FancyMenuActivity.class);
-		intent.putExtra(MainActivity.LOCATION_DATA,
-				"string representation of stuff");
-	}
-
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (requestCode) {
@@ -214,7 +206,7 @@ public class DynamicListActivity extends Activity implements
 				Toast.makeText(getApplication(), itemValue, Toast.LENGTH_SHORT)
 						.show();
 				Intent intent = new Intent(getApplicationContext(),
-						FancyMenuActivity.class);
+						MenuDisplayActivity.class);
 				intent.putExtra(MainActivity.LOCATION_DATA, itemValue);
 				startActivity(intent);
 			}
