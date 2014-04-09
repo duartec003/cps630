@@ -19,9 +19,9 @@ public class JSONHelper {
 		throw new NullPointerException("JSON object not created");
 	}
 
-	public static String getJSONString(Resources res) {
+	public static String getJSONString(Resources res, int resId) {
 		try {
-			InputStream in_s = res.openRawResource(R.raw.tim_hortons);
+			InputStream in_s = res.openRawResource(resId);
 
 			byte[] b = new byte[in_s.available()];
 			in_s.read(b);
