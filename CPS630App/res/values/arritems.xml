@@ -38,6 +38,39 @@
             <item>Balzac</item>
         </item>
     </string-array>
+        
+        <string-array name="Ted_Rogers">
+            <item>Tim Hortons (7th Floor)</item>
+            <item>Tim Hortons (9th Floor)</item>
+        </string-array>
+        
+        <string-array name="Kerr_Hall">
+            <item>Tim Hortons (2nd Floor)</item>
+        </string-array>
+        
+        <string-array name="Library_Building" >
+            <item>Tim Hortons (1st Floor Hub)</item>
+        </string-array>
+         
+         <string-array name="Engineering_Building">
+            <item>Tim Hortons (Main Floor)</item>
+        </string-array>
+        
+         <string-array name="Library_Bridge" >
+            <item>Tim Hortons</item>
+        </string-array>
+        
+         
+         <string-array name="Pitman_Hall" >
+        </string-array>
+        
+         <string-array name="Eric_Palin_Hall">
+            <item>Espressos</item>
+        </string-array>
+        
+         <string-array name="Image_Arts">
+            <item>Balzac</item>
+        </string-array>
        
 
 </resources>

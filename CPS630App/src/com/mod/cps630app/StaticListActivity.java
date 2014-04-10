@@ -40,7 +40,8 @@ public class StaticListActivity extends Activity {
 
 			Field resField = null;
 			try {
-				resField = R.array.class.getField(buildings[j]);
+				String Building=buildings[j].replaceAll(" ", "_");
+				resField = R.array.class.getField(Building);
 			} catch (NoSuchFieldException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -57,15 +58,15 @@ public class StaticListActivity extends Activity {
 			}
 			String[] StoresPerBuilding = getResources().getStringArray(getRes);
 			
-			/*end delete if doesnt work*/
+			/*end delete if doesn't work*/
 			
-			for (int i = 0; i < 2; i++) {
+			for (int i = 0; i < StoresPerBuilding.length; i++) {
 
 				/* Add Data to The sub list <Shops in The Buildings> */
 				if(shops[j].length()!=0)
 				{
 					/*test to see what is printed with size StoresPerBuilding.length */
-				group.children.add(shops[j]+StoresPerBuilding.length);
+				group.children.add(StoresPerBuilding[i]);
 				}
 			}
 			groups.append(j, group);
