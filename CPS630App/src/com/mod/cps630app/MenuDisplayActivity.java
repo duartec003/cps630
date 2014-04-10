@@ -7,13 +7,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.google.android.gms.internal.gm;
 import com.mod.cps630app.menu.NavListFragment;
 import com.mod.cps630app.menu.OrderDisplayFragment;
 import com.mod.cps630app.menu.PaymentFragment;
@@ -31,6 +31,7 @@ public class MenuDisplayActivity extends FragmentActivity implements
 	private Order				order;
 	private String				currentHeader;
 	private Menu				gMenu;
+	private Fragment			currentFrag;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -92,19 +93,23 @@ public class MenuDisplayActivity extends FragmentActivity implements
 			item.setVisible(false);
 			gMenu.findItem(R.id.back_to_menu).setVisible(true);
 		} else if (item.getItemId() == R.id.back_to_menu) {
-			NavListFragment frag = new NavListFragment();
-			getActionBar().setTitle("Top Level");
-			Bundle b = new Bundle();
-			b.putStringArray(MENU_DISPLAY_CONTENTS, new String[] { BEV });
-			b.putInt(MENU_LEVEL, 0);
-			frag.setArguments(b);
-			clearBackStack();
-			getSupportFragmentManager().beginTransaction()
-					.replace(R.id.fragment_container, frag).commit();
+			displayTopLevelMenu();
 			item.setVisible(false);
 			gMenu.findItem(R.id.view_order).setVisible(true);
 		}
 		return true;
+	}
+
+	private void displayTopLevelMenu() {
+		NavListFragment frag = new NavListFragment();
+		getActionBar().setTitle("Top Level");
+		Bundle b = new Bundle();
+		b.putStringArray(MENU_DISPLAY_CONTENTS, new String[] { BEV });
+		b.putInt(MENU_LEVEL, 0);
+		frag.setArguments(b);
+		clearBackStack();
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.fragment_container, frag).commit();
 	}
 
 	@Override
@@ -217,10 +222,33 @@ public class MenuDisplayActivity extends FragmentActivity implements
 		clearBackStack();
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.fragment_container, frag).commit();
+		gMenu.findItem(R.id.back_to_start).setVisible(true);
+		gMenu.findItem(R.id.back_to_menu).setVisible(false);
+		gMenu.findItem(R.id.view_order).setVisible(false);
+	}
+
+	@Override
+	public void onAttachFragment(Fragment fragment) {
+		super.onAttachFragment(fragment);
+		currentFrag = fragment;
 	}
 
 	@Override
 	public void onBackPressed() {
+		if (currentFrag == null) return;
+		if (currentFrag instanceof PaymentFragment
+				|| currentFrag instanceof OrderDisplayFragment) {
+			displayTopLevelMenu();
+
+			gMenu.findItem(R.id.back_to_start).setVisible(false);
+			gMenu.findItem(R.id.back_to_menu).setVisible(false);
+			gMenu.findItem(R.id.view_order).setVisible(true);
+
+		} else if (currentFrag instanceof ConfirmationFragment) {
+			gMenu.findItem(R.id.back_to_menu).setVisible(false);
+			gMenu.findItem(R.id.view_order).setVisible(false);
+			gMenu.findItem(R.id.back_to_start).setVisible(false);
+		}
 
 	}
 }
