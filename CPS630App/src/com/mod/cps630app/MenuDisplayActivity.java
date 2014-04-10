@@ -252,11 +252,7 @@ public class MenuDisplayActivity extends FragmentActivity implements
 			gMenu.findItem(R.id.back_to_menu).setVisible(false);
 			gMenu.findItem(R.id.view_order).setVisible(true);
 
-		} else if (currentFrag instanceof ConfirmationFragment) {
-			gMenu.findItem(R.id.back_to_menu).setVisible(false);
-			gMenu.findItem(R.id.view_order).setVisible(false);
-			gMenu.findItem(R.id.back_to_start).setVisible(false);
-		}
+		} else if (currentFrag instanceof ConfirmationFragment) {}
 
 	}
 }
