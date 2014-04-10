@@ -10,6 +10,7 @@ import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
 import java.math.BigDecimal;
 
+import com.mod.cps630app.obj.Order;
 import com.mod.cps630app.obj.OrderItem;
 
 public class Sample {

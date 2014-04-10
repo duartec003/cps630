@@ -17,7 +17,7 @@ import android.widget.ListView;
 
 import com.mod.cps630app.MenuDisplayActivity;
 import com.mod.cps630app.R;
-import com.mod.cps630app.sample.Order;
+import com.mod.cps630app.obj.Order;
 
 public class OrderDisplayFragment extends Fragment {
 	ViewOrderListener	mCallback;

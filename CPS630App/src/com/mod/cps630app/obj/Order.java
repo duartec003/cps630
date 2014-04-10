@@ -1,10 +1,9 @@
-package com.mod.cps630app.sample;
+package com.mod.cps630app.obj;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 
-import com.mod.cps630app.obj.OrderItem;
 
 public class Order implements Serializable {
 	private static final long		serialVersionUID	= 1067788747481699795L;

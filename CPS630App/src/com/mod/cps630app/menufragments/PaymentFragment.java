@@ -18,8 +18,8 @@ import android.widget.TextView;
 
 import com.mod.cps630app.MenuDisplayActivity;
 import com.mod.cps630app.R;
+import com.mod.cps630app.obj.Order;
 import com.mod.cps630app.obj.OrderItem;
-import com.mod.cps630app.sample.Order;
 
 public class PaymentFragment extends Fragment {
 	private static final BigDecimal	TAX	= new BigDecimal("1.13");
