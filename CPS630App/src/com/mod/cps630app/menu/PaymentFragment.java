@@ -53,7 +53,7 @@ public class PaymentFragment extends Fragment {
 			arr[i] = curr.getName() + "\t\t" + curr.getCost();
 		}
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-				android.R.layout.simple_list_item_1, arr);
+				R.layout.confirmation_list_item, arr);
 		orderSummary.setAdapter(adapter);
 		orderCost.setText(orderCost.getText()
 				+ order.getCost().multiply(TAX)
