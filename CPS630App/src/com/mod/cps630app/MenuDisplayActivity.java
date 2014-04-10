@@ -202,7 +202,7 @@ public class MenuDisplayActivity extends FragmentActivity implements
 		getActionBar().setTitle("Payment");
 		Bundle b = new Bundle();
 		frag.setArguments(b);
-
+		clearBackStack();
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.fragment_container, frag).commit();
 	}
