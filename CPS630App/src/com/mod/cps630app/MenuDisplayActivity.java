@@ -208,8 +208,19 @@ public class MenuDisplayActivity extends FragmentActivity implements
 	}
 
 	@Override
-	public void onPayment(String itemName, int level) {
-		// TODO Auto-generated method stub
+	public void onPayment() {
+		ConfirmationFragment frag = new ConfirmationFragment();
+
+		getActionBar().setTitle("Confirmation");
+		Bundle b = new Bundle();
+		frag.setArguments(b);
+		clearBackStack();
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.fragment_container, frag).commit();
+	}
+
+	@Override
+	public void onBackPressed() {
 
 	}
 }

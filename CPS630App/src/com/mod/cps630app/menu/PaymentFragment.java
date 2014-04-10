@@ -8,8 +8,10 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,7 +25,7 @@ public class PaymentFragment extends Fragment {
 	OnPaymentListener				mCallback;
 
 	public interface OnPaymentListener {
-		public void onPayment(String itemName, int level);
+		public void onPayment();
 	}
 
 	@Override
@@ -42,6 +44,9 @@ public class PaymentFragment extends Fragment {
 			Bundle savedInstanceState) {
 		Order order = ((MenuDisplayActivity) mCallback).getOrder();
 		View v = inflater.inflate(R.layout.activity_payment, container, false);
+
+		setupButtons(v);
+
 		ListView orderSummary = (ListView) v
 				.findViewById(R.id.payment_order_summary);
 		TextView orderCost = (TextView) v
@@ -60,5 +65,22 @@ public class PaymentFragment extends Fragment {
 						.setScale(2, RoundingMode.CEILING).toString());
 
 		return v;
+	}
+
+	private void setupButtons(View v) {
+		Button[] buttons = new Button[] {
+				(Button) v.findViewById(R.id.OneCard),
+				(Button) v.findViewById(R.id.Credit),
+				(Button) v.findViewById(R.id.Debit) };
+
+		for (Button b : buttons) {
+			b.setOnClickListener(new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					mCallback.onPayment();
+				}
+			});
+		}
+
 	}
 }

@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name= "dataelements">
-        <item >Ted Rogers</item>
-        <item >Kerr Hall</item>
-        <item >Library Building</item>
-        <item >Engineering Building</item>
-        <item >Library Bridge</item>
-        <item >Pitman Hall</item>
-        <item >Eric Palin Hall</item>
-        <item >Image Arts</item>
+
+    <string-array name="dataelements">
+        <item>Ted Rogers</item>
+        <item>Kerr Hall</item>
+        <item>Library Building</item>
+        <item>Engineering Building</item>
+        <item>Library Bridge</item>
+        <item>Pitman Hall</item>
+        <item>Eric Palin Hall</item>
+        <item>Image Arts</item>
     </string-array>
-        
-<!--  <item>
+
+    <!--
+<item>
 <Buildings name="Ted Rogers">
 <Store>
 <location>7th Floor</location>
@@ -106,6 +108,7 @@ Monday to Friday 7 a.m. to 9 p.m. Saturday 10 a.m. to 5 p.m. Sunday 10 a.m. to 5
 </hours>
 </Store>
 </Buildings>
-</item>-->
+</item>
+    -->
 
 </resources>
