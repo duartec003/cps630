@@ -1,4 +1,4 @@
-package com.mod.cps630app;
+package com.mod.cps630app.obj;
 
 import java.io.Serializable;
 import java.math.BigDecimal;

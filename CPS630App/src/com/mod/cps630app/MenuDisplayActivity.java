@@ -15,9 +15,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.mod.cps630app.menu.NavListFragment;
-import com.mod.cps630app.menu.OrderDisplayFragment;
-import com.mod.cps630app.menu.PaymentFragment;
+import com.mod.cps630app.menufragments.ConfirmationFragment;
+import com.mod.cps630app.menufragments.NavListFragment;
+import com.mod.cps630app.menufragments.OrderDisplayFragment;
+import com.mod.cps630app.menufragments.PaymentFragment;
+import com.mod.cps630app.obj.OrderItem;
+import com.mod.cps630app.sample.Order;
 import com.mod.cps630app.util.JSONHelper;
 
 public class MenuDisplayActivity extends FragmentActivity implements

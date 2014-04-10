@@ -1,4 +1,4 @@
-package com.mod.cps630app.menu;
+package com.mod.cps630app.menufragments;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -16,8 +16,8 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.mod.cps630app.MenuDisplayActivity;
-import com.mod.cps630app.Order;
 import com.mod.cps630app.R;
+import com.mod.cps630app.sample.Order;
 
 public class OrderDisplayFragment extends Fragment {
 	ViewOrderListener	mCallback;

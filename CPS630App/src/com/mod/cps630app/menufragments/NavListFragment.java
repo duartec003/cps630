@@ -1,4 +1,4 @@
-package com.mod.cps630app.menu;
+package com.mod.cps630app.menufragments;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -1,6 +1,11 @@
-package com.mod.cps630app;
+package com.mod.cps630app.menufragments;
 
-import com.mod.cps630app.menu.PaymentFragment.OnPaymentListener;
+import com.mod.cps630app.MenuDisplayActivity;
+import com.mod.cps630app.R;
+import com.mod.cps630app.R.id;
+import com.mod.cps630app.R.layout;
+import com.mod.cps630app.obj.OrderItem;
+import com.mod.cps630app.sample.Order;
 
 import android.app.Activity;
 import android.os.Bundle;

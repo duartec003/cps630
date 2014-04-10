@@ -1,4 +1,4 @@
-package com.mod.cps630app.menu;
+package com.mod.cps630app.menufragments;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -17,9 +17,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mod.cps630app.MenuDisplayActivity;
-import com.mod.cps630app.Order;
-import com.mod.cps630app.OrderItem;
 import com.mod.cps630app.R;
+import com.mod.cps630app.obj.OrderItem;
+import com.mod.cps630app.sample.Order;
 
 public class PaymentFragment extends Fragment {
 	private static final BigDecimal	TAX	= new BigDecimal("1.13");

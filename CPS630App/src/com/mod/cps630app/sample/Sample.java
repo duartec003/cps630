@@ -10,8 +10,7 @@ import java.io.ObjectOutputStream;
 import java.io.StreamCorruptedException;
 import java.math.BigDecimal;
 
-import com.mod.cps630app.Order;
-import com.mod.cps630app.OrderItem;
+import com.mod.cps630app.obj.OrderItem;
 
 public class Sample {
 	public void ExampleOrderWriteRead() {
