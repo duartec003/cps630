@@ -19,8 +19,8 @@
         android:textColor="#fbf9d8"
         android:textSize="50sp"
         android:textStyle="bold" />
-    
-     <TextView
+
+    <TextView
         android:id="@+id/fullscreen_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -38,9 +38,11 @@
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="0.5"
+        android:background="#8cd3cf"
         android:onClick="showDynamicLocations"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
+        android:scaleType="fitCenter"
         android:src="@drawable/gps_map" />
 
     <ImageButton
@@ -48,7 +50,9 @@
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="0.5"
+        android:background="#8cd3cf"
         android:onClick="showStaticLocations"
-          android:src="@drawable/campus_map" />
+        android:scaleType="fitCenter"
+        android:src="@drawable/campus_map" />
 
 </LinearLayout>
