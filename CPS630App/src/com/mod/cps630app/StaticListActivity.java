@@ -1,5 +1,7 @@
 package com.mod.cps630app;
 
+import java.lang.reflect.Field;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.SparseArray;
@@ -27,14 +29,44 @@ public class StaticListActivity extends Activity {
 
 		String buildings[] = getResources().getStringArray(R.array.dataelements);
 		String shops[] = getResources().getStringArray(R.array.datastores);
+		
+		
+		/*updated-- delete later*/
+		
 		for (int j = 0; j < buildings.length; j++) {
 			/* Add Data to The Main list <The Buildings> */
 
 			Group group = new Group(buildings[j]);
+
+			Field resField = null;
+			try {
+				resField = R.array.class.getField(buildings[j]);
+			} catch (NoSuchFieldException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			int getRes = 0;
+			try {
+				getRes = resField.getInt(null);
+			} catch (IllegalAccessException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IllegalArgumentException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String[] StoresPerBuilding = getResources().getStringArray(getRes);
+			
+			/*end delete if doesnt work*/
+			
 			for (int i = 0; i < 2; i++) {
 
 				/* Add Data to The sub list <Shops in The Buildings> */
-				group.children.add(shops[j]);
+				if(shops[j].length()!=0)
+				{
+					/*test to see what is printed with size StoresPerBuilding.length */
+				group.children.add(shops[j]+StoresPerBuilding.length);
+				}
 			}
 			groups.append(j, group);
 		}
