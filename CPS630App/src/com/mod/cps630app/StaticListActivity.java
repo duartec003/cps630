@@ -25,15 +25,16 @@ public class StaticListActivity extends Activity {
 
 	public void createData() {
 
-		String arr[] = getResources().getStringArray(R.array.dataelements);
-		for (int j = 0; j < arr.length; j++) {
+		String buildings[] = getResources().getStringArray(R.array.dataelements);
+		String shops[] = getResources().getStringArray(R.array.datastores);
+		for (int j = 0; j < buildings.length; j++) {
 			/* Add Data to The Main list <The Buildings> */
 
-			Group group = new Group(arr[j]);
+			Group group = new Group(buildings[j]);
 			for (int i = 0; i < 2; i++) {
 
 				/* Add Data to The sub list <Shops in The Buildings> */
-				group.children.add("Shop " + i);
+				group.children.add(shops[j]);
 			}
 			groups.append(j, group);
 		}
