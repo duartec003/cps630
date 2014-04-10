@@ -80,6 +80,7 @@ public class MenuDisplayActivity extends FragmentActivity implements
 						Toast.LENGTH_SHORT).show();
 				return true;
 			}
+			getActionBar().setTitle("Your Order");
 			OrderDisplayFragment frag = new OrderDisplayFragment();
 
 			Bundle b = new Bundle();
@@ -92,7 +93,7 @@ public class MenuDisplayActivity extends FragmentActivity implements
 			gMenu.findItem(R.id.back_to_menu).setVisible(true);
 		} else if (item.getItemId() == R.id.back_to_menu) {
 			NavListFragment frag = new NavListFragment();
-
+			getActionBar().setTitle("Top Level");
 			Bundle b = new Bundle();
 			b.putStringArray(MENU_DISPLAY_CONTENTS, new String[] { BEV });
 			b.putInt(MENU_LEVEL, 0);
@@ -109,6 +110,7 @@ public class MenuDisplayActivity extends FragmentActivity implements
 	@Override
 	// This is for fragment to activity to fragment communication
 	public void onItemSelected(String itemName, int level) {
+		getActionBar().setTitle(itemName);
 		String[] displayList = null;
 		if (level == 0) {
 			JSONObject jObj = null;
@@ -147,6 +149,7 @@ public class MenuDisplayActivity extends FragmentActivity implements
 				}
 			currentHeader = itemName;
 		} else if (level == 2) {
+			getActionBar().setTitle("Top Level");
 			Toast.makeText(this, "Added to order", Toast.LENGTH_SHORT).show();
 			order.addItem(new OrderItem().name(currentHeader + ": " + itemName)
 					.cost(CostLookUp.costFor(itemName)));
@@ -196,7 +199,7 @@ public class MenuDisplayActivity extends FragmentActivity implements
 	@Override
 	public void onCheckout() {
 		PaymentFragment frag = new PaymentFragment();
-
+		getActionBar().setTitle("Payment");
 		Bundle b = new Bundle();
 		frag.setArguments(b);
 
