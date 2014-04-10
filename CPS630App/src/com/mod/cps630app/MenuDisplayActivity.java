@@ -6,6 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -96,6 +97,10 @@ public class MenuDisplayActivity extends FragmentActivity implements
 			displayTopLevelMenu();
 			item.setVisible(false);
 			gMenu.findItem(R.id.view_order).setVisible(true);
+		} else if (item.getItemId() == R.id.back_to_start) {
+			Intent intent = new Intent(this.getApplicationContext(),
+					MainActivity.class);
+			this.startActivity(intent);
 		}
 		return true;
 	}

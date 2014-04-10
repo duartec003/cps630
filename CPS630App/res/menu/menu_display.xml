@@ -15,7 +15,7 @@
         android:id="@+id/back_to_start"
         android:orderInCategory="90"
         android:showAsAction="always"
-        android:title="@string/view_order"
+        android:title="@string/exit_conf"
         android:visible="false"/>
     <item
         android:id="@+id/action_settings"
