@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name= "dataelements">
+        <item >Ted Rogers</item>
+        <item >Kerr Hall</item>
+        <item >Library Building</item>
+        <item >Engineering Building</item>
+        <item >Library Bridge</item>
+        <item >Pitman Hall</item>
+        <item >Eric Palin Hall</item>
+        <item >Image Arts</item>
+    </string-array>
+        
+<!--  <item>
+<Buildings name="Ted Rogers">
+<Store>
+<location>7th Floor</location>
+<name>Tim Hortons</name>
+<hours>
+Monday to Thursday 7:30 a.m. – 8 p.m. Friday 7:30 a.m. – 2:30 p.m.
+</hours>
+</Store>
+<Store>
+<location>9th Floor</location>
+<name>Tim Hortons</name>
+<hours>
+Monday to Thursday 7:30 a.m. – 3 p.m. Friday 7:30 a.m. - 1 p.m.
+</hours>
+</Store>
+</Buildings>
+</item>
+
+<item>
+
+<Buildings name="Kerr Hall">
+<Store>
+<location>2nd Floor (at the bridge to Rogers Centre)</location>
+<name>Tim Hortons</name>
+<hours>
+Monday to Thursday 7:30 a.m. – 8 p.m. Friday 7:30 a.m. – 2 p.m.
+</hours>
+</Store>
+</Buildings>
+</item>
+
+<item>
+<Buildings name="Library Building">
+<Store>
+<location>1st Floor,Hub, Jorgenson Hall, 380 Victoria Street</location>
+<name>Tim Hortons</name>
+<hours>
+Monday to Thursday 7 a.m. – 8 p.m. Friday 7 a.m. – 3 p.m.
+</hours>
+</Store>
+</Buildings>
+</item>
+
+<item>
+<Buildings name="Engineering Building">
+<Store>
+<location>Main Floor</location>
+<name>Tim Hortons</name>
+<hours>
+Monday to Thursday 7:30 a.m. – 4:30 p.m. Friday 7:30 a.m. – 2 p.m.
+</hours>
+</Store>
+<Store>
+<location>Library Bridge</location>
+<name>Tim Hortons</name>
+<hours>
+Monday to Thursday 8 a.m. - 10 p.m. Friday 8 a.m. - 3 p.m.
+</hours>
+</Store>
+</Buildings>
+</item>
+
+<item>
+<Buildings name="Pitman Hall Residence">
+<Store>
+<location>160 Mutual Street</location>
+<name/>
+<hours/>
+</Store>
+</Buildings>
+</item>
+
+<item>
+<Buildings name="Eric Palin Hall">
+<Store>
+<location>Main Floor</location>
+<name>Expressos</name>
+<hours>
+Monday to Thursday 9 a.m. – 1:30 p.m. Friday Closed
+</hours>
+</Store>
+</Buildings>
+</item>
+
+<item>
+<Buildings name="Image Arts Building">
+<Store>
+<location>Main Floor</location>
+<name>Balzacs</name>
+<hours>
+Monday to Friday 7 a.m. to 9 p.m. Saturday 10 a.m. to 5 p.m. Sunday 10 a.m. to 5 p.m.
+</hours>
+</Store>
+</Buildings>
+</item>-->
+
+</resources>

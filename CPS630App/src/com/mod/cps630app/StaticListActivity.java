@@ -9,7 +9,7 @@ import android.widget.ExpandableListView;
 public class StaticListActivity extends Activity {
   // more efficient than HashMap for mapping integers to objects
   SparseArray<Group> groups = new SparseArray<Group>();
-  
+  ExpandableListView listView;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +26,11 @@ public class StaticListActivity extends Activity {
   /*Add Data to The list*/
   
   public void createData() {
-	 
+
 	 	  
     for (int j = 0; j < 5; j++) {
   	  /*Add Data to The Main list <The Buildings>*/
-      Group group = new Group("Ryerson Building " + j + " 0.0 Km");
+      Group group = new Group(getResources().getStringArray(R.array.dataelements)+" Ryerson Building " + j + " 0.0 Km");
       for (int i = 0; i < 2; i++) {
     	  
     	  /*Add Data to The sub list <Shops in The Buildings>*/    	  
