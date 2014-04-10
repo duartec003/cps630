@@ -165,8 +165,6 @@ public class DynamicListActivity extends Activity implements
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				String itemValue = (String) list.getItemAtPosition(position);
-				Toast.makeText(DynamicListActivity.this.getApplication(),
-						itemValue, Toast.LENGTH_SHORT).show();
 				Intent intent = new Intent(DynamicListActivity.this
 						.getApplicationContext(), MenuDisplayActivity.class);
 				intent.putExtra(MainActivity.LOCATION_DATA, itemValue);
