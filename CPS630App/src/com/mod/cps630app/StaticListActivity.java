@@ -26,11 +26,10 @@ public class StaticListActivity extends Activity {
 	public void createData() {
 
 		String arr[] = getResources().getStringArray(R.array.dataelements);
-		for (int j = 0; j < 5; j++) {
+		for (int j = 0; j < arr.length; j++) {
 			/* Add Data to The Main list <The Buildings> */
 
-			Group group = new Group(arr[j] + " Ryerson Building " + j
-					+ " 0.0 Km");
+			Group group = new Group(arr[j]);
 			for (int i = 0; i < 2; i++) {
 
 				/* Add Data to The sub list <Shops in The Buildings> */
