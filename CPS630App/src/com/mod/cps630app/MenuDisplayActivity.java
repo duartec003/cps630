@@ -15,11 +15,13 @@ import android.widget.Toast;
 
 import com.mod.cps630app.menu.NavListFragment;
 import com.mod.cps630app.menu.OrderDisplayFragment;
+import com.mod.cps630app.menu.PaymentFragment;
 import com.mod.cps630app.util.JSONHelper;
 
 public class MenuDisplayActivity extends FragmentActivity implements
 		NavListFragment.OnItemSelectedListener,
-		OrderDisplayFragment.ViewOrderListener {
+		OrderDisplayFragment.ViewOrderListener,
+		PaymentFragment.OnPaymentListener {
 
 	public static final String	MENU_DISPLAY_CONTENTS	= "com.mod.cps630.MENU_DISPLAY_CONTENTS";
 	public static final String	MENU_LEVEL				= "com.mod.cps630.MENU_LEVEL";
@@ -168,5 +170,22 @@ public class MenuDisplayActivity extends FragmentActivity implements
 
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.fragment_container, frag).commit();
+	}
+
+	@Override
+	public void onCheckout() {
+		PaymentFragment frag = new PaymentFragment();
+
+		Bundle b = new Bundle();
+		frag.setArguments(b);
+
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.fragment_container, frag).commit();
+	}
+
+	@Override
+	public void onPayment(String itemName, int level) {
+		// TODO Auto-generated method stub
+		
 	}
 }
