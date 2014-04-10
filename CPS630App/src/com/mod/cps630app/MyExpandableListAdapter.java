@@ -1,6 +1,7 @@
 package com.mod.cps630app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,9 +14,9 @@ import android.widget.Toast;
 
 public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 
-	private final SparseArray<Group>	groups;
-	public LayoutInflater				inflater;
-	public Activity						activity;
+	private final SparseArray<Group> groups;
+	public LayoutInflater inflater;
+	public Activity activity;
 
 	public MyExpandableListAdapter(Activity act, SparseArray<Group> groups) {
 		activity = act;
@@ -43,10 +44,15 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
 		}
 		text = (TextView) convertView.findViewById(R.id.textView1);
 		text.setText(children);
+		if (children.contains("Tim Hortons")) {
+			text.setCompoundDrawablesWithIntrinsicBounds(
+					R.drawable.tim_hortons, 0, 0, 0);
+		}
 		convertView.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(activity, children, Toast.LENGTH_SHORT).show();
+				Intent intent = new Intent(activity, MenuDisplayActivity.class);
+				activity.startActivity(intent);
 			}
 		});
 		return convertView;

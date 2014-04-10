@@ -5,6 +5,7 @@ import java.util.Random;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.format.Time;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,8 @@ public class ConfirmationFragment extends Fragment {
 		confId.setText(Integer.toHexString(new Random()
 				.nextInt(Integer.MAX_VALUE)));
 		TextView time = (TextView) v.findViewById(R.id.confirmation_time);
+		Time t = new Time();t.setToNow();
+		time.setText(t.format2445());
 		String[] arr = new String[order.size()];
 		for (int i = 0; i < order.size(); i++) {
 			OrderItem curr = order.get(i);

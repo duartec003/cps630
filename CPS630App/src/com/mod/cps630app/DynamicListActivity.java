@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map.Entry;
@@ -35,25 +36,27 @@ public class DynamicListActivity extends Activity implements
 		GooglePlayServicesClient.ConnectionCallbacks,
 		GooglePlayServicesClient.OnConnectionFailedListener, LocationListener {
 
-	private static final int			CONNECTION_FAILURE_RESOLUTION_REQUEST	= 9000;
-	private static final int			MILLISECONDS_PER_SECOND					= 1000;
-	public static final int				UPDATE_INTERVAL_IN_SECONDS				= 5;
-	private static final long			UPDATE_INTERVAL							= MILLISECONDS_PER_SECOND
-																						* UPDATE_INTERVAL_IN_SECONDS;
-	private static final int			FASTEST_INTERVAL_IN_SECONDS				= 1;
-	private static final long			FASTEST_INTERVAL						= MILLISECONDS_PER_SECOND
-																						* FASTEST_INTERVAL_IN_SECONDS;
-	private LocationClient				locationClient;
-	private Location					currentLocation;
-	private LocationRequest				locationRequest;
+	private static final int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+	private static final int MILLISECONDS_PER_SECOND = 1000;
+	public static final int UPDATE_INTERVAL_IN_SECONDS = 5;
+	private static final long UPDATE_INTERVAL = MILLISECONDS_PER_SECOND
+			* UPDATE_INTERVAL_IN_SECONDS;
+	private static final int FASTEST_INTERVAL_IN_SECONDS = 1;
+	private static final long FASTEST_INTERVAL = MILLISECONDS_PER_SECOND
+			* FASTEST_INTERVAL_IN_SECONDS;
+	private LocationClient locationClient;
+	private Location currentLocation;
+	private LocationRequest locationRequest;
 
-	private HashMap<String, Location>	locationMap;
+	private HashMap<String, Location> locationMap;
+	private HashMap<String, String> name;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.activity_dynamic_list);
 
+		getActionBar().setTitle("Select A Location");
 		this.locationClient = new LocationClient(this, this, this);
 
 		this.locationRequest = LocationRequest.create();
@@ -73,18 +76,17 @@ public class DynamicListActivity extends Activity implements
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		switch (requestCode) {
-			case CONNECTION_FAILURE_RESOLUTION_REQUEST:
+		case CONNECTION_FAILURE_RESOLUTION_REQUEST:
+			/*
+			 * If the result code is Activity.RESULT_OK, try to connect again
+			 */
+			switch (resultCode) {
+			case Activity.RESULT_OK:
 				/*
-				 * If the result code is Activity.RESULT_OK, try to connect
-				 * again
+				 * Try the request again
 				 */
-				switch (resultCode) {
-					case Activity.RESULT_OK:
-						/*
-						 * Try the request again
-						 */
-						break;
-				}
+				break;
+			}
 		}
 
 	}
@@ -157,7 +159,7 @@ public class DynamicListActivity extends Activity implements
 		final ListView list = (ListView) this
 				.findViewById(R.id.dynamicListView);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, fullStoreNames);
+				android.R.layout.simple_list_item_1, procName(fullStoreNames));
 		list.setAdapter(adapter);
 		list.setOnItemClickListener(new OnItemClickListener() {
 
@@ -175,6 +177,27 @@ public class DynamicListActivity extends Activity implements
 		// list.addView(new TextView(getParent()));
 	}
 
+	private String[] procName(String[] fullStoreNames) {
+		name = new HashMap<String, String>();
+		name.put("Ted Rogers.7.Tim Hortons",
+				"Ted Rogers: Tim Horton (7th floor)");
+		name.put("Ted Rogers.9.Tim Hortons",
+				"Ted Rogers: Tim Horton (9th floor)");
+		name.put("Kerr Hall.2.Tim Hortons", "Kerr Hall: Tim Hortons");
+		name.put("Library.1.Tim Hortons", "Library: Tim Hortons");
+		name.put("Engineering Building.1.Tim Hortons",
+				"Engineering Building: Tim Hortons");
+		name.put("Image Arts Building.1.Balzacs", "Image Arts: Balzacs");
+		name.put("Eric Palin Hall.1.Expressos", "Eric Palin Hall: Espressos");
+		String[] proc = new String[fullStoreNames.length];
+
+		for (int i = 0; i < fullStoreNames.length; i++) {
+			proc[i] = name.get(fullStoreNames[i]);
+		}
+		System.out.println(Arrays.toString(proc));
+		return proc;
+	}
+
 	private String[] getStoreNames(String[] buildingNames) {
 		ArrayList<String> list = new ArrayList<String>();
 		for (String s : buildingNames) {
@@ -182,7 +205,7 @@ public class DynamicListActivity extends Activity implements
 					this.locationMap.get(s).distanceTo(this.currentLocation));
 			for (String t : MainActivity.QUALIFIED_STORE_LIST) {
 				if (t.startsWith(s)) {
-					list.add(t + distStr);
+					list.add(t);
 				}
 			}
 		}
@@ -229,7 +252,8 @@ public class DynamicListActivity extends Activity implements
 
 	private void createLocationMap() {
 		File locationCache = new File(this.getCacheDir(), "locCache");
-		if (!locationCache.exists()) throw new IllegalStateException();
+		if (!locationCache.exists())
+			throw new IllegalStateException();
 		this.locationMap = new HashMap<String, Location>();
 		BufferedReader br = null;
 		try {
