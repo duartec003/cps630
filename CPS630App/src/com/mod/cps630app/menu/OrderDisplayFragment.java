@@ -5,10 +5,13 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebView.FindListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.mod.cps630app.MenuDisplayActivity;
@@ -20,6 +23,8 @@ public class OrderDisplayFragment extends Fragment {
 
 	public interface ViewOrderListener {
 		public void onItemSelectedInOrder(int position);
+
+		public void onCheckout();
 	}
 
 	@Override
@@ -43,7 +48,8 @@ public class OrderDisplayFragment extends Fragment {
 			orderList[i] = order.get(i).getName();
 		}
 		View v = inflater.inflate(R.layout.order_view, container, false);
-		ListView listView = (ListView) v.findViewById(R.id.order_view_order_list);
+		ListView listView = (ListView) v
+				.findViewById(R.id.order_view_order_list);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
 				R.layout.menu_list_item, orderList);
 		listView.setAdapter(adapter);
@@ -53,6 +59,14 @@ public class OrderDisplayFragment extends Fragment {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				mCallback.onItemSelectedInOrder(position);
+			}
+		});
+
+		Button b = (Button) v.findViewById(R.id.check_out_button);
+		b.setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				mCallback.onCheckout();
 			}
 		});
 		return v;

@@ -13,13 +13,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.gms.internal.gm;
 import com.mod.cps630app.menu.NavListFragment;
 import com.mod.cps630app.menu.OrderDisplayFragment;
+import com.mod.cps630app.menu.PaymentFragment;
 import com.mod.cps630app.util.JSONHelper;
 
 public class MenuDisplayActivity extends FragmentActivity implements
 		NavListFragment.OnItemSelectedListener,
-		OrderDisplayFragment.ViewOrderListener {
+		OrderDisplayFragment.ViewOrderListener,
+		PaymentFragment.OnPaymentListener {
 
 	public static final String	MENU_DISPLAY_CONTENTS	= "com.mod.cps630.MENU_DISPLAY_CONTENTS";
 	public static final String	MENU_LEVEL				= "com.mod.cps630.MENU_LEVEL";
@@ -27,6 +30,7 @@ public class MenuDisplayActivity extends FragmentActivity implements
 	private JSONObject			json;
 	private Order				order;
 	private String				currentHeader;
+	private Menu				gMenu;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -64,17 +68,19 @@ public class MenuDisplayActivity extends FragmentActivity implements
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.menu_display, menu);
+		gMenu = menu;
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		if (order.size() == 0) {
-			Toast.makeText(this, "You haven't added any items yet",
-					Toast.LENGTH_SHORT).show();
-			return true;
-		}
 		if (item.getItemId() == R.id.view_order) {
+			if (order.size() == 0) {
+				Toast.makeText(this, "You haven't added any items yet",
+						Toast.LENGTH_SHORT).show();
+				return true;
+			}
+			getActionBar().setTitle("Your Order");
 			OrderDisplayFragment frag = new OrderDisplayFragment();
 
 			Bundle b = new Bundle();
@@ -83,6 +89,20 @@ public class MenuDisplayActivity extends FragmentActivity implements
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.fragment_container, frag)
 					.addToBackStack(null).commit();
+			item.setVisible(false);
+			gMenu.findItem(R.id.back_to_menu).setVisible(true);
+		} else if (item.getItemId() == R.id.back_to_menu) {
+			NavListFragment frag = new NavListFragment();
+			getActionBar().setTitle("Top Level");
+			Bundle b = new Bundle();
+			b.putStringArray(MENU_DISPLAY_CONTENTS, new String[] { BEV });
+			b.putInt(MENU_LEVEL, 0);
+			frag.setArguments(b);
+			clearBackStack();
+			getSupportFragmentManager().beginTransaction()
+					.replace(R.id.fragment_container, frag).commit();
+			item.setVisible(false);
+			gMenu.findItem(R.id.view_order).setVisible(true);
 		}
 		return true;
 	}
@@ -90,6 +110,7 @@ public class MenuDisplayActivity extends FragmentActivity implements
 	@Override
 	// This is for fragment to activity to fragment communication
 	public void onItemSelected(String itemName, int level) {
+		getActionBar().setTitle(itemName);
 		String[] displayList = null;
 		if (level == 0) {
 			JSONObject jObj = null;
@@ -128,6 +149,7 @@ public class MenuDisplayActivity extends FragmentActivity implements
 				}
 			currentHeader = itemName;
 		} else if (level == 2) {
+			getActionBar().setTitle("Top Level");
 			Toast.makeText(this, "Added to order", Toast.LENGTH_SHORT).show();
 			order.addItem(new OrderItem().name(currentHeader + ": " + itemName)
 					.cost(CostLookUp.costFor(itemName)));
@@ -145,12 +167,16 @@ public class MenuDisplayActivity extends FragmentActivity implements
 				.replace(R.id.fragment_container, frag).addToBackStack(null)
 				.commit();
 		else {
-			FragmentManager fm = getSupportFragmentManager();
-			for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
-				fm.popBackStack();
-			}
+			clearBackStack();
 			getSupportFragmentManager().beginTransaction()
 					.replace(R.id.fragment_container, frag).commit();
+		}
+	}
+
+	private void clearBackStack() {
+		FragmentManager fm = getSupportFragmentManager();
+		for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+			fm.popBackStack();
 		}
 	}
 
@@ -168,5 +194,22 @@ public class MenuDisplayActivity extends FragmentActivity implements
 
 		getSupportFragmentManager().beginTransaction()
 				.replace(R.id.fragment_container, frag).commit();
+	}
+
+	@Override
+	public void onCheckout() {
+		PaymentFragment frag = new PaymentFragment();
+		getActionBar().setTitle("Payment");
+		Bundle b = new Bundle();
+		frag.setArguments(b);
+		clearBackStack();
+		getSupportFragmentManager().beginTransaction()
+				.replace(R.id.fragment_container, frag).commit();
+	}
+
+	@Override
+	public void onPayment(String itemName, int level) {
+		// TODO Auto-generated method stub
+
 	}
 }

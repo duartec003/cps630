@@ -69,7 +69,6 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="300dp"
-        android:onClick="showStaticLocations"
         android:text="Debit" />
 
     <Button
@@ -79,7 +78,6 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="300dp"
-        android:onClick="showStaticLocations"
         android:text="Credit" />
 
     <Button
@@ -89,7 +87,6 @@
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="180dp"
         android:layout_marginTop="300dp"
-        android:onClick="showStaticLocations"
         android:text="One Card" />
 
 </RelativeLayout>
