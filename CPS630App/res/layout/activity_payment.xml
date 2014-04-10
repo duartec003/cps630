@@ -75,31 +75,31 @@
         android:textSize="20sp"
         android:textStyle="" />
 
-    <Button
+    <ImageButton
         android:id="@+id/Debit"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="300dp"
-        android:text="Debit" />
+        android:src="@drawable/interac" />
 
-    <Button
+    <ImageButton
         android:id="@+id/Credit"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="100dp"
         android:layout_marginTop="300dp"
-        android:text="Credit" />
+        android:src="@drawable/credit"  />
 
-    <Button
+    <ImageButton
         android:id="@+id/OneCard"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="180dp"
         android:layout_marginTop="300dp"
-        android:text="One Card" />
+        android:src="@drawable/one_card" />
 
 </RelativeLayout>

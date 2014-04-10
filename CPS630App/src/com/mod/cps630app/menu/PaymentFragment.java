@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -68,12 +69,12 @@ public class PaymentFragment extends Fragment {
 	}
 
 	private void setupButtons(View v) {
-		Button[] buttons = new Button[] {
-				(Button) v.findViewById(R.id.OneCard),
-				(Button) v.findViewById(R.id.Credit),
-				(Button) v.findViewById(R.id.Debit) };
+		ImageButton[] buttons = new ImageButton[] {
+				(ImageButton) v.findViewById(R.id.OneCard),
+				(ImageButton) v.findViewById(R.id.Credit),
+				(ImageButton) v.findViewById(R.id.Debit) };
 
-		for (Button b : buttons) {
+		for (ImageButton b : buttons) {
 			b.setOnClickListener(new OnClickListener() {
 				@Override
 				public void onClick(View v) {

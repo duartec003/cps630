@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.mod.cps630app.MenuDisplayActivity;
@@ -62,7 +63,7 @@ public class OrderDisplayFragment extends Fragment {
 			}
 		});
 
-		Button b = (Button) v.findViewById(R.id.check_out_button);
+		ImageButton b = (ImageButton) v.findViewById(R.id.check_out_button);
 		b.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
