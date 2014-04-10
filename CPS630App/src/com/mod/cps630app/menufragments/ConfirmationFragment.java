@@ -1,11 +1,6 @@
 package com.mod.cps630app.menufragments;
 
-import com.mod.cps630app.MenuDisplayActivity;
-import com.mod.cps630app.R;
-import com.mod.cps630app.R.id;
-import com.mod.cps630app.R.layout;
-import com.mod.cps630app.obj.Order;
-import com.mod.cps630app.obj.OrderItem;
+import java.util.Random;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -15,6 +10,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
+
+import com.mod.cps630app.MenuDisplayActivity;
+import com.mod.cps630app.R;
+import com.mod.cps630app.obj.Order;
+import com.mod.cps630app.obj.OrderItem;
 
 public class ConfirmationFragment extends Fragment {
 
@@ -39,6 +40,10 @@ public class ConfirmationFragment extends Fragment {
 		Order order = mCallback.getOrder();
 		ListView orderSummary = (ListView) v
 				.findViewById(R.id.confirmation_order_contents);
+		TextView confId = (TextView) v.findViewById(R.id.confirmation_id);
+		confId.setText(Integer.toHexString(new Random()
+				.nextInt(Integer.MAX_VALUE)));
+		TextView time = (TextView) v.findViewById(R.id.confirmation_time);
 		String[] arr = new String[order.size()];
 		for (int i = 0; i < order.size(); i++) {
 			OrderItem curr = order.get(i);
