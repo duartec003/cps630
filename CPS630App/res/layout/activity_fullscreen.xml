@@ -33,7 +33,7 @@
         android:textSize="30sp"
         android:textStyle="" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button1"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
@@ -41,14 +41,14 @@
         android:onClick="showDynamicLocations"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
-        android:text="@string/button_gps" />
+        android:src="@drawable/gps_map" />
 
-    <Button
+    <ImageButton
         android:id="@+id/button2"
         android:layout_width="fill_parent"
         android:layout_height="0dip"
         android:layout_weight="0.5"
         android:onClick="showStaticLocations"
-        android:text="@string/button_other" />
+          android:src="@drawable/campus_map" />
 
 </LinearLayout>
