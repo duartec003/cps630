@@ -9,10 +9,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.mod.cps630app.MenuDisplayActivity;
 import com.mod.cps630app.Order;
+import com.mod.cps630app.OrderItem;
 import com.mod.cps630app.R;
 
 public class PaymentFragment extends Fragment {
@@ -37,18 +40,24 @@ public class PaymentFragment extends Fragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
-		String[] options = getArguments().getStringArray(
-				MenuDisplayActivity.MENU_DISPLAY_CONTENTS);
 		Order order = ((MenuDisplayActivity) mCallback).getOrder();
 		View v = inflater.inflate(R.layout.activity_payment, container, false);
-		TextView orderSummary = (TextView) v
+		ListView orderSummary = (ListView) v
 				.findViewById(R.id.payment_order_summary);
 		TextView orderCost = (TextView) v
 				.findViewById(R.id.payment_order_total);
 
-		orderSummary.setText(order.toString());
-		orderCost.setText(order.getCost().multiply(TAX)
-				.setScale(2, RoundingMode.CEILING).toString());
+		String[] arr = new String[order.size()];
+		for (int i = 0; i < order.size(); i++) {
+			OrderItem curr = order.get(i);
+			arr[i] = curr.getName() + "\t\t" + curr.getCost();
+		}
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+				android.R.layout.simple_list_item_1, arr);
+		orderSummary.setAdapter(adapter);
+		orderCost.setText(orderCost.getText()
+				+ order.getCost().multiply(TAX)
+						.setScale(2, RoundingMode.CEILING).toString());
 
 		return v;
 	}
